@@ -13,4 +13,5 @@ var box2d;
     box2d.b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
     box2d.b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 })(box2d || (box2d = {}));
+
 //# sourceMappingURL=box2d.js.map

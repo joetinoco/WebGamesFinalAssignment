@@ -12,4 +12,5 @@ var config;
     // Hero Constants
     config.HERO_LIVES = 3;
 })(config || (config = {}));
+
 //# sourceMappingURL=config.js.map

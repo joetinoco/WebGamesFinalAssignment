@@ -46,7 +46,8 @@ var objects;
             stage.removeChild(this.scoreValueLabel);
         };
         return Scoreboard;
-    })();
+    }());
     objects.Scoreboard = Scoreboard;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=scoreboard.js.map

@@ -41,7 +41,8 @@ var objects;
             this.view.graphics.beginFill("#663300").drawRect(position.x * config.SCALE, position.y * config.SCALE, this.width * config.SCALE, this.height * config.SCALE);
         };
         return Platform;
-    })();
+    }());
     objects.Platform = Platform;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=platform.js.map

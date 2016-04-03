@@ -8,4 +8,5 @@ var controls;
     controls.rTally = 0;
     controls.lTally = 0;
 })(controls || (controls = {}));
+
 //# sourceMappingURL=controls.js.map

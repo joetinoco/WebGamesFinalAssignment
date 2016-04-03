@@ -106,4 +106,5 @@ function gameStart() {
             world.CreateBody(bodyDef).CreateFixture(fixDef);
         } */
 }
+
 //# sourceMappingURL=game.js.map

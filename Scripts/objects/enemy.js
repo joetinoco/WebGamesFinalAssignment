@@ -66,7 +66,8 @@ var objects;
             this.body.SetLinearVelocity(velocity);
         };
         return Enemy;
-    })();
+    }());
     objects.Enemy = Enemy;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=enemy.js.map
