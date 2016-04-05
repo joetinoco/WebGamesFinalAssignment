@@ -1,8 +1,4 @@
-﻿/// <reference path="../managers/asset.ts" />
-/// <reference path="../box2d.ts" />
-/// <reference path="../config.ts" />
-
-module objects {
+﻿module objects {
     export class Coin{
         bodyDef: Box2D.Dynamics.b2BodyDef;
         fixDef: Box2D.Dynamics.b2FixtureDef;
@@ -14,11 +10,11 @@ module objects {
         constructor() {
             this.view = new createjs.Sprite(managers.Assets.coinAtlas, "coin");
 
-            this.width = this.view.getBounds().width / config.SCALE;
-            this.height = this.view.getBounds().height / config.SCALE;
+            this.width = this.view.getBounds().width / config.Screen.SCALE;
+            this.height = this.view.getBounds().height / config.Screen.SCALE;
 
-            this.view.regX = this.view.getBounds().width * 0.5 * config.SCALE;
-            this.view.regY = this.view.getBounds().height * 0.5 * config.SCALE;
+            this.view.regX = this.view.getBounds().width * 0.5 * config.Screen.SCALE;
+            this.view.regY = this.view.getBounds().height * 0.5 * config.Screen.SCALE;
             
             this.createFixtureDefinition();
             this.createBodyDefinition();
@@ -42,7 +38,7 @@ module objects {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.userData = this.view;
             this.bodyDef.type = box2d.b2Body.b2_dynamicBody;
-            this.bodyDef.position.Set(this.view.x / config.SCALE, this.view.y / config.SCALE);
+            this.bodyDef.position.Set(this.view.x / config.Screen.SCALE, this.view.y / config.Screen.SCALE);
             this.bodyDef.fixedRotation = true; // prevent coin rotation
         }
         
@@ -62,8 +58,8 @@ module objects {
             this.body.SetAngularVelocity(0);
 
             // position Enemy
-            var randomX = Math.floor(Math.random() * (stage.canvas.width - 30) + 30);
-            this.body.SetPosition(new box2d.b2Vec2(randomX / config.SCALE, -this.height / config.SCALE));
+            var randomX = Math.floor(Math.random() * (config.Screen.WIDTH - 30) + 30);
+            this.body.SetPosition(new box2d.b2Vec2(randomX / config.Screen.SCALE, -this.height / config.Screen.SCALE));
         }
 
         update() {
@@ -75,8 +71,8 @@ module objects {
             position = this.body.GetPosition();
             console.log(position);
 
-            this.view.x = position.x * config.SCALE;
-            this.view.y = position.y * config.SCALE;
+            this.view.x = position.x * config.Screen.SCALE;
+            this.view.y = position.y * config.Screen.SCALE;
 
             // Gets the current spinning angle
             this.view.rotation = this.body.GetAngle() * (180 / Math.PI);

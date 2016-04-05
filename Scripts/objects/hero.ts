@@ -1,10 +1,4 @@
-﻿/// <reference path="../box2d.ts" />
-/// <reference path="../config.ts" />
-/// <reference path="../keys.ts" />
-/// <reference path="../controls.ts" />
-/// <reference path="../managers/asset.ts" />
-
-module objects {
+﻿module objects {
     export class Hero {
         bodyDef: Box2D.Dynamics.b2BodyDef;
         fixDef: Box2D.Dynamics.b2FixtureDef;
@@ -16,7 +10,7 @@ module objects {
         lastJumpTime: number;
         MAX_SPEED: number = 30;
         JUMP_TIMEOUT: number = 1000 // 1 second
-        JUMP_HEIGHT: number = 110;
+        JUMP_HEIGHT: number = 30 * config.Screen.SCALE;
         constructor() {
             // Set our Hero controls initially to false
 
@@ -26,11 +20,11 @@ module objects {
 
             this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
 
-            this.width = this.view.getBounds().width / config.SCALE;
-            this.height = this.view.getBounds().height / config.SCALE;
+            this.width = this.view.getBounds().width / config.Screen.SCALE;
+            this.height = this.view.getBounds().height / config.Screen.SCALE;
 
-            this.view.regX = this.width * 0.5 * config.SCALE;
-            this.view.regY = this.height * 0.5 * config.SCALE;
+            this.view.regX = this.width * 0.5 * config.Screen.SCALE;
+            this.view.regY = this.height * 0.5 * config.Screen.SCALE;
 
             this.createFixtureDefinition();
             this.createBodyDefinition();
@@ -43,7 +37,7 @@ module objects {
         createFixtureDefinition() {
             this.fixDef = new box2d.b2FixtureDef();
             this.fixDef.density = 1.0;
-            this.fixDef.friction = 0.2; // Add some Resistance
+            this.fixDef.friction = 0.1; // Add some Resistance
             this.fixDef.restitution = 0.2; // Add a little bounce
 
             // Define the shape, which will be a Polygon
@@ -58,7 +52,7 @@ module objects {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.userData = this.view;
             this.bodyDef.type = box2d.b2Body.b2_dynamicBody;
-            this.bodyDef.position.Set(this.view.x / config.SCALE, this.view.y / config.SCALE);
+            this.bodyDef.position.Set(this.view.x / config.Screen.SCALE, this.view.y / config.Screen.SCALE);
             this.bodyDef.fixedRotation = true; // prevent player rotation
         }
 
@@ -78,7 +72,7 @@ module objects {
             this.body.SetAngularVelocity(0);
 
             // position Hero
-            this.body.SetPosition(new box2d.b2Vec2(65 / config.SCALE, -this.height / config.SCALE));
+            this.body.SetPosition(new box2d.b2Vec2(65 / config.Screen.SCALE, -this.height / config.Screen.SCALE));
         }
 
         assignControls() {
@@ -163,8 +157,8 @@ module objects {
             // Move our view (Our EaselJS Bitmap)
             // to the new coordinates to match the
             // Box2D Body's position of the hero
-            this.view.x = position.x * config.SCALE;
-            this.view.y = position.y * config.SCALE;
+            this.view.x = position.x * config.Screen.SCALE;
+            this.view.y = position.y * config.Screen.SCALE;
 
             // Gets the current spinning angle
             this.view.rotation = this.body.GetAngle() * (180 / Math.PI);

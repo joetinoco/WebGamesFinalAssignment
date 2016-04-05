@@ -33,7 +33,7 @@
             // This is what our box2d bodies get drawn to
             this.debugDraw = new box2d.b2DebugDraw();
             this.debugDraw.SetSprite(this.debugContext);
-            this.debugDraw.SetDrawScale(config.SCALE);
+            this.debugDraw.SetDrawScale(config.Screen.SCALE);
             this.debugDraw.SetFillAlpha(0.3); // Set the Opacity of objects
             this.debugDraw.SetLineThickness(1.0);
             this.debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit);

@@ -5,24 +5,19 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var objects;
 (function (objects) {
+    // LABEL CLASS ++++++++++++++++++++++++++++++++++++++++++++++
     var Label = (function (_super) {
         __extends(Label, _super);
-        function Label(x, y, labelText) {
-            _super.call(this, labelText, managers.Assets.bitMapFont);
+        // CONSTRUCTOR METHOD +++++++++++++++++++++++++++++++++++
+        function Label(labelString, labelFont, labelColour, x, y) {
+            _super.call(this, labelString, labelFont, labelColour);
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
             this.x = x;
             this.y = y;
         }
-        // Utility Method to change the default font size
-        Label.prototype.fontSize = function (size) {
-            var scale = size / this.getBounds().height;
-            this.scaleX = scale;
-            this.scaleY = scale;
-        };
         return Label;
-    }(createjs.BitmapText));
+    })(createjs.Text);
     objects.Label = Label;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=label.js.map

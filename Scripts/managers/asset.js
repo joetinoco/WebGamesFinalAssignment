@@ -2,13 +2,13 @@ var managers;
 (function (managers) {
     // Image and Sound Manifest;
     var assetManifest = [
-        { id: "loading", src: "assets/images/loading.jpg" },
-        { id: "pickup", src: "assets/sounds/coin.mp3" },
-        { id: "hurt", src: "assets/sounds/hurt.mp3" },
-        { id: "jump", src: "assets/sounds/jump.mp3" }
+        { id: "loading", src: "Assets/images/loading.jpg" },
+        { id: "pickup", src: "Assets/sounds/coin.mp3" },
+        { id: "hurt", src: "Assets/sounds/hurt.mp3" },
+        { id: "jump", src: "Assets/sounds/jump.mp3" }
     ];
     var heroData = {
-        "images": ["assets/images/hero/heroAtlas.png"],
+        "images": ["Assets/images/hero/heroAtlas.png"],
         "frames": [
             [178, 2, 67, 65],
             [178, 69, 67, 65],
@@ -72,7 +72,7 @@ var managers;
         }
     };
     var enemyData = {
-        "images": ["assets/images/enemy/enemyAtlas.png"],
+        "images": ["Assets/images/enemy/enemyAtlas.png"],
         "frames": [
             [162, 564, 60, 119],
             [2, 2, 81, 145],
@@ -110,7 +110,7 @@ var managers;
         }
     };
     var coinData = {
-        "images": ["assets/images/coin/coinAtlas.png"],
+        "images": ["Assets/images/coin/coinAtlas.png"],
         "frames": [
             [2, 2, 44, 40],
             [48, 2, 44, 40],
@@ -132,7 +132,7 @@ var managers;
     };
     // BitMap Font SpriteSheet Data object
     var bitMapFontData = {
-        "images": ["assets/fonts/fontAtlas.png"],
+        "images": ["Assets/fonts/fontAtlas.png"],
         "frames": [
             [2, 169, 83, 82],
             [768, 166, 32, 81],
@@ -226,8 +226,7 @@ var managers;
             this.bitMapFont = new createjs.SpriteSheet(bitMapFontData);
         };
         return Assets;
-    }());
+    })();
     managers.Assets = Assets;
 })(managers || (managers = {}));
-
 //# sourceMappingURL=asset.js.map

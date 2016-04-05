@@ -3,10 +3,10 @@ var objects;
     var Enemy = (function () {
         function Enemy() {
             this.view = new createjs.Sprite(managers.Assets.enemyAtlas, "enemyWalk");
-            this.width = this.view.getBounds().width / config.SCALE;
-            this.height = this.view.getBounds().height / config.SCALE;
-            this.view.regX = this.width * 0.5 * config.SCALE;
-            this.view.regY = this.height * 0.5 * config.SCALE;
+            this.width = this.view.getBounds().width / config.Screen.SCALE;
+            this.height = this.view.getBounds().height / config.Screen.SCALE;
+            this.view.regX = this.width * 0.5 * config.Screen.SCALE;
+            this.view.regY = this.height * 0.5 * config.Screen.SCALE;
             this.createFixtureDefinition();
             this.createBodyDefinition();
             this.createEnemy();
@@ -25,7 +25,7 @@ var objects;
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.userData = this.view;
             this.bodyDef.type = box2d.b2Body.b2_dynamicBody;
-            this.bodyDef.position.Set(this.view.x / config.SCALE, this.view.y / config.SCALE);
+            this.bodyDef.position.Set(this.view.x / config.Screen.SCALE, this.view.y / config.Screen.SCALE);
             this.bodyDef.fixedRotation = true; // prevent player rotation
         };
         Enemy.prototype.createEnemy = function () {
@@ -40,8 +40,8 @@ var objects;
             // And no spin
             this.body.SetAngularVelocity(0);
             // position Enemy
-            var randomX = Math.floor(Math.random() * (stage.canvas.width - 30) + 30);
-            this.body.SetPosition(new box2d.b2Vec2(randomX / config.SCALE, -this.height / config.SCALE));
+            var randomX = Math.floor(Math.random() * (config.Screen.WIDTH - 30) + 30);
+            this.body.SetPosition(new box2d.b2Vec2(randomX / config.Screen.SCALE, -this.height / config.Screen.SCALE));
         };
         // Fires on each iteration of our Game Loop
         Enemy.prototype.update = function () {
@@ -52,8 +52,8 @@ var objects;
             // Move our view (Our EaselJS Bitmap)
             // to the new coordinates to match the
             // Box2D Body's position of the hero
-            this.view.x = position.x * config.SCALE;
-            this.view.y = position.y * config.SCALE;
+            this.view.x = position.x * config.Screen.SCALE;
+            this.view.y = position.y * config.Screen.SCALE;
             // Gets the current spinning angle
             this.view.rotation = this.body.GetAngle() * (180 / Math.PI);
             // Set the final velocity to the current
@@ -66,8 +66,7 @@ var objects;
             this.body.SetLinearVelocity(velocity);
         };
         return Enemy;
-    }());
+    })();
     objects.Enemy = Enemy;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=enemy.js.map
