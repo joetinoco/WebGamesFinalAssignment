@@ -17,7 +17,7 @@ var objects;
             this.fixDef.restitution = 0.2; // Add a little bounce
             // Define the shape, which will be a Polygon
             this.fixDefShape = new box2d.b2PolygonShape();
-            this.fixDefShape.SetAsBox(this.width * 0.5, this.height * 0.5);
+            this.fixDefShape.SetAsBox(this.width, this.height);
             this.fixDef.shape = this.fixDefShape;
         };
         Platform.prototype.createBodyDefinition = function () {
@@ -34,12 +34,16 @@ var objects;
             position = this.body.GetPosition();
             // Creates a new Shape object
             this.view = new createjs.Shape();
-            this.view.regX = this.width * 0.5 * config.Screen.SCALE;
-            this.view.regY = this.height * 0.5 * config.Screen.SCALE;
-            this.view.graphics.beginFill("#663300").drawRect(position.x * config.Screen.SCALE, position.y * config.Screen.SCALE, this.width * config.Screen.SCALE, this.height * config.Screen.SCALE);
+            // this.view.x = this.x * config.Screen.SCALE;
+            // this.view.y = this.y * config.Screen.SCALE;
+            this.view.regX = this.width * config.Screen.SCALE;
+            this.view.regY = this.height * config.Screen.SCALE;
+            this.view.graphics.beginFill("#663300")
+                .drawRect(position.x * config.Screen.SCALE, position.y * config.Screen.SCALE, this.width * 2 * config.Screen.SCALE, this.height * 2 * config.Screen.SCALE);
         };
         return Platform;
-    })();
+    }());
     objects.Platform = Platform;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=platform.js.map

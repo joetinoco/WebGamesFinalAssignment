@@ -14,7 +14,7 @@ html, body {
 /* Scale and Center align */
 canvas {
     position: absolute;
-    width: 1024px;
+    width: 800px;
     min-width: 320px;
     max-width: 100%;
     left: 50%;

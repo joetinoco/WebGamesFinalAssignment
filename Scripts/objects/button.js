@@ -9,7 +9,8 @@ var objects;
         __extends(Button, _super);
         //CONSTRUCTOR
         function Button(pathString, x, y, isCentered) {
-            _super.call(this, assets.getResult(pathString));
+            // super(assets.getResult(pathString));
+            _super.call(this, managers.Assets.loader.getResult(pathString));
             this.isCentered = isCentered;
             this.x = x;
             this.y = y;
@@ -33,7 +34,8 @@ var objects;
             event.currentTarget.alpha = 1.0;
         };
         return Button;
-    })(createjs.Bitmap);
+    }(createjs.Bitmap));
     objects.Button = Button;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=button.js.map

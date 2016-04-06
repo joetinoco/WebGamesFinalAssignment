@@ -22,25 +22,25 @@ module scenes {
         // Start Method
         public start(): void { 
             
-            this._ground = new objects.Platform(18, 48, 80, 1);
+            this._ground = new objects.Platform(0, 48, 64, 1);
             stage.addChild(this._ground.view);
 
-            var leftWall = new objects.Platform(0, 0, 1, 100);
+            var leftWall = new objects.Platform(0, 0, 1, 96);
             stage.addChild(leftWall.view);
 
-            var rightWall = new objects.Platform(64, 0, 1, 100);
+            var rightWall = new objects.Platform(64, 0, 1, 96);
             stage.addChild(rightWall.view);
 
-            var platform1 = new objects.Platform(16, 40, 10, 1);
+            var platform1 = new objects.Platform(20, 40, 10, 0.5);
             stage.addChild(platform1.view);
 
-            var platform2 = new objects.Platform(28, 30, 10, 1);
+            var platform2 = new objects.Platform(28, 30, 10, 0.5);
             stage.addChild(platform2.view);
 
-            var platform3 = new objects.Platform(36, 20, 10, 1);
+            var platform3 = new objects.Platform(36, 20, 10, 0.5);
             stage.addChild(platform3.view);
 
-            var platform4 = new objects.Platform(48, 10, 18, 1);
+            var platform4 = new objects.Platform(48, 10, 10, 0.5);
             stage.addChild(platform4.view);
 
             this._hero = new objects.Hero();
@@ -57,26 +57,26 @@ module scenes {
             var bodyDef = new box2d.b2BodyDef;
             var fixDefShape; 
             
-            //create some objects
-            bodyDef.type = box2d.b2Body.b2_dynamicBody;
-            for (var i = 0; i < 10; ++i) {
-                if (Math.random() > 0.5) {
-                    fixDefShape = new box2d.b2PolygonShape();
-                    fixDefShape.SetAsBox(
-                        Math.random() + 0.1 //half width
-                        , Math.random() + 0.1 //half height
-                        );
-                    fixDef.shape = fixDefShape;
-                } else {
-                    fixDefShape = new box2d.b2CircleShape(
-                        Math.random() + 0.1 //radius
-                        );
-                    fixDef.shape = fixDefShape;
-                }
-                bodyDef.position.x = Math.random() * stage.canvas.width / config.Screen.SCALE;
-                bodyDef.position.y = Math.random() * stage.canvas.height / config.Screen.SCALE;
-                world.CreateBody(bodyDef).CreateFixture(fixDef);
-            } 
+            // //create some objects
+            // bodyDef.type = box2d.b2Body.b2_dynamicBody;
+            // for (var i = 0; i < 10; ++i) {
+            //     if (Math.random() > 0.5) {
+            //         fixDefShape = new box2d.b2PolygonShape();
+            //         fixDefShape.SetAsBox(
+            //             Math.random() + 0.1 //half width
+            //             , Math.random() + 0.1 //half height
+            //             );
+            //         fixDef.shape = fixDefShape;
+            //     } else {
+            //         fixDefShape = new box2d.b2CircleShape(
+            //             Math.random() + 0.1 //radius
+            //             );
+            //         fixDef.shape = fixDefShape;
+            //     }
+            //     bodyDef.position.x = Math.random() * config.Screen.WIDTH / config.Screen.SCALE;
+            //     bodyDef.position.y = Math.random() * config.Screen.HEIGHT / config.Screen.SCALE;
+            //     world.CreateBody(bodyDef).CreateFixture(fixDef);
+            // } 
 
             
            

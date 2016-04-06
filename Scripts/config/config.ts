@@ -12,11 +12,11 @@ module config {
     
     // Screen Constants
     export class Screen {
-        public static WIDTH: number = 1024;
-        public static HEIGHT: number = 768;
-        public static CENTER_X: number = 512;
-        public static CENTER_Y: number = 384;
-        public static SCALE: number = 16;
+        public static WIDTH: number = 800;
+        public static HEIGHT: number = 600;
+        public static CENTER_X: number = 400;
+        public static CENTER_Y: number = 300;
+        public static SCALE: number = 12.5;
     }
     
     // Game Constants

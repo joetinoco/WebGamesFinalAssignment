@@ -1,7 +1,13 @@
 ﻿module managers {
     // Image and Sound Manifest;
     var assetManifest = [
+        // Images
         { id: "loading", src: "Assets/images/loading.jpg" },
+        { id: "StartButton", src: "Assets/images/StartButton.png" },
+        { id: "WhiteBackground", src: "Assets/images/WhiteBackground.png" },
+        { id: "BlackBackground", src: "Assets/images/BlackBackground.png" },
+        
+        // Sounds
         { id: "pickup", src: "Assets/sounds/coin.mp3" },
         { id: "hurt", src: "Assets/sounds/hurt.mp3" },
         { id: "jump", src: "Assets/sounds/jump.mp3" }
@@ -228,7 +234,7 @@
         public static manifest;
         public static data;
 
-        public static loader;
+        public static loader: createjs.LoadQueue;
         public static heroAtlas: createjs.SpriteSheet;
         public static enemyAtlas: createjs.SpriteSheet;
         public static coinAtlas: createjs.SpriteSheet;

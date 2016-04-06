@@ -2,8 +2,7 @@
 module scenes {
     export class Menu extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _backgroundImage: createjs.Bitmap;
-        private _startButton: objects.Button;
+        private _startLabel: objects.Label;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -16,24 +15,28 @@ module scenes {
         public start(): void {   
 
             // add background image to the scene
-            this._backgroundImage = new createjs.Bitmap(assets.getResult("MenuBackground"));
-            this.addChild(this._backgroundImage); 
+            // this._backgroundImage = new createjs.Bitmap(assets.getResult("MenuBackground"));
+            // this.addChild(this._backgroundImage); 
 
-            // add the START button to the MENU scene
-            this._startButton = new objects.Button(
-                "StartButton",
-                config.Screen.CENTER_X + 20,
-                config.Screen.CENTER_Y + 120, true);
-            this.addChild(this._startButton);
+
+            // add the start label
+            this._startLabel = new objects.Label(
+                'Press any key to start',
+                '30px Consolas',
+                '#000000',
+                config.Screen.CENTER_X,
+                config.Screen.CENTER_Y);
+            // Add to global container
+            this.addChild(this._startLabel);
             
-            // START Button event listener
-            this._startButton.on("click", this._startButtonClick, this);
-           
             // Setup Background
             this._setupBackground("WhiteBackground");
            
             // FadeIn
-            this._fadeIn(500);
+            this._fadeIn(500); 
+            
+            // Bind start key action
+            window.onkeyup = this._startKeypress;
            
             // add this scene to the global stage container
             stage.addChild(this);
@@ -47,11 +50,11 @@ module scenes {
         
         //EVENT HANDLERS ++++++++++++++++++++
         
-        // START Button click event handler
-        private _startButtonClick(event: createjs.MouseEvent) {
+        // any key press
+        private _startKeypress(event) {
             //FadeOut 
-            this._fadeOut(500, () => {
-                // Switch to the LEFT_CAVE Scene
+            currentScene._fadeOut(500, () => {
+                // Switch to the LEVEL 1 Scene
                 scene = config.Scene.LEVEL_1;
                 changeScene();
             });

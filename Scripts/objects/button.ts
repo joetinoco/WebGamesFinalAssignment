@@ -7,7 +7,8 @@
         
         //CONSTRUCTOR
         constructor(pathString: string, x: number, y: number, public isCentered: boolean) {
-            super(assets.getResult(pathString));
+            // super(assets.getResult(pathString));
+            super(managers.Assets.loader.getResult(pathString));
             this.x = x;
             this.y = y;
             this._pathString = pathString;

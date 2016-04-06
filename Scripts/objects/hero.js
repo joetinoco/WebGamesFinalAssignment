@@ -4,8 +4,8 @@ var objects;
         function Hero() {
             // Set our Hero controls initially to false
             this.MAX_SPEED = 30;
-            this.JUMP_TIMEOUT = 1000; // 1 second
-            this.JUMP_HEIGHT = 30 * config.Screen.SCALE;
+            this.JUMP_TIMEOUT = 200; // 0.2 second
+            this.JUMP_HEIGHT = 70 * config.Screen.SCALE;
             // Sets last jump time to zero, to allow
             // for jumping immediately
             this.lastJumpTime = 0;
@@ -23,7 +23,7 @@ var objects;
         Hero.prototype.createFixtureDefinition = function () {
             this.fixDef = new box2d.b2FixtureDef();
             this.fixDef.density = 1.0;
-            this.fixDef.friction = 0.1; // Add some Resistance
+            this.fixDef.friction = 0.01; // Add some Resistance
             this.fixDef.restitution = 0.2; // Add a little bounce
             // Define the shape, which will be a Polygon
             this.fixDefShape = new box2d.b2CircleShape();
@@ -64,13 +64,13 @@ var objects;
                 case keys.LEFT:
                 case keys.A:
                     controls.left = true;
-                    controls.lTally++;
+                    controls.lTally += 5;
                     controls.rTally = 0;
                     break;
                 case keys.RIGHT:
                 case keys.D:
                     controls.right = true;
-                    controls.rTally++;
+                    controls.rTally += 5;
                     controls.lTally = 0;
                     break;
                 case keys.SPACEBAR:
@@ -181,7 +181,8 @@ var objects;
             this.body.SetLinearVelocity(velocity);
         };
         return Hero;
-    })();
+    }());
     objects.Hero = Hero;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=hero.js.map

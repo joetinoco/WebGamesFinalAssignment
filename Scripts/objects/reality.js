@@ -15,11 +15,11 @@ var objects;
             world = new box2d.b2World(this.gravity, true);
         };
         Reality.prototype.createArcadeCanvas = function () {
-            arcadeCanvas = config.ARCADE_CANVAS;
+            this.arcadeCanvas = config.ARCADE_CANVAS;
         };
         Reality.prototype.createDebugCanvas = function () {
-            debugCanvas = config.DEBUG_CANVAS;
-            this.debugContext = debugCanvas.getContext("2d"); // set context
+            this.debugCanvas = config.DEBUG_CANVAS;
+            this.debugContext = this.debugCanvas.getContext("2d"); // set context
         };
         Reality.prototype.createDebugDraw = function () {
             // This is what our box2d bodies get drawn to
@@ -40,7 +40,8 @@ var objects;
             world.ClearForces();
         };
         return Reality;
-    })();
+    }());
     objects.Reality = Reality;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=reality.js.map

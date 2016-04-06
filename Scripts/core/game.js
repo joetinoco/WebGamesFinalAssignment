@@ -51,7 +51,7 @@ function init() {
     // sets up our stats counting workflow
     setupStats();
     // set initial scene
-    scene = config.Scene.LEVEL_1;
+    scene = config.Scene.MENU;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame
@@ -103,4 +103,5 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
+
 //# sourceMappingURL=game.js.map

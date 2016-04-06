@@ -9,8 +9,8 @@
         height: number;
         lastJumpTime: number;
         MAX_SPEED: number = 30;
-        JUMP_TIMEOUT: number = 1000 // 1 second
-        JUMP_HEIGHT: number = 30 * config.Screen.SCALE;
+        JUMP_TIMEOUT: number = 200 // 0.2 second
+        JUMP_HEIGHT: number = 70 * config.Screen.SCALE;
         constructor() {
             // Set our Hero controls initially to false
 
@@ -37,7 +37,7 @@
         createFixtureDefinition() {
             this.fixDef = new box2d.b2FixtureDef();
             this.fixDef.density = 1.0;
-            this.fixDef.friction = 0.1; // Add some Resistance
+            this.fixDef.friction = 0.01; // Add some Resistance
             this.fixDef.restitution = 0.2; // Add a little bounce
 
             // Define the shape, which will be a Polygon
@@ -88,13 +88,13 @@
                 case keys.LEFT:
                 case keys.A:
                     controls.left = true;
-                    controls.lTally++;
+                    controls.lTally += 5;
                     controls.rTally = 0;
                     break;
                 case keys.RIGHT:
                 case keys.D:
                     controls.right = true;
-                    controls.rTally++;
+                    controls.rTally += 5;
                     controls.lTally = 0;
                     break;
                 case keys.SPACEBAR:

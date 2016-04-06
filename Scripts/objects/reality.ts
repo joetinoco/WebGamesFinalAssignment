@@ -2,6 +2,8 @@
     export class Reality {
         gravity: Box2D.Common.Math.b2Vec2;
         debugContext;
+        arcadeCanvas;
+        debugCanvas;
         debugDraw: Box2D.Dynamics.b2DebugDraw;
         constructor() {
 
@@ -21,12 +23,12 @@
         }
 
         createArcadeCanvas() {
-            arcadeCanvas = config.ARCADE_CANVAS;
+            this.arcadeCanvas = config.ARCADE_CANVAS;
         }
 
         createDebugCanvas() {
-            debugCanvas = config.DEBUG_CANVAS;
-            this.debugContext = debugCanvas.getContext("2d"); // set context
+            this.debugCanvas = config.DEBUG_CANVAS;
+            this.debugContext = this.debugCanvas.getContext("2d"); // set context
         }
 
         createDebugDraw() {
