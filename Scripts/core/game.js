@@ -51,7 +51,7 @@ function init() {
     // sets up our stats counting workflow
     setupStats();
     // set initial scene
-    scene = config.Scene.MENU;
+    scene = config.Scene.LEVEL_1;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame

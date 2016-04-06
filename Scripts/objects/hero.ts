@@ -8,15 +8,19 @@
         width: number;
         height: number;
         lastJumpTime: number;
+        mirrored: boolean; // Reverse movements
         MAX_SPEED: number = 30;
         JUMP_TIMEOUT: number = 200 // 0.2 second
         JUMP_HEIGHT: number = 70 * config.Screen.SCALE;
-        constructor() {
+        constructor(x: number, y: number, mirrored: boolean) {
             // Set our Hero controls initially to false
 
             // Sets last jump time to zero, to allow
             // for jumping immediately
             this.lastJumpTime = 0;
+
+            // Set movement type for hero or enemy
+            this.mirrored = mirrored;
 
             this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
 
@@ -28,7 +32,7 @@
 
             this.createFixtureDefinition();
             this.createBodyDefinition();
-            this.createHero();
+            this.createHero(x, y);
 
             // Set up movement and controls
             this.assignControls()
@@ -56,7 +60,7 @@
             this.bodyDef.fixedRotation = true; // prevent player rotation
         }
 
-        createHero() {
+        createHero(x: number, y: number) {
             // Add Hero to world
             this.body = world.CreateBody(this.bodyDef)
             this.body.CreateFixture(this.fixDef);
@@ -72,7 +76,7 @@
             this.body.SetAngularVelocity(0);
 
             // position Hero
-            this.body.SetPosition(new box2d.b2Vec2(65 / config.Screen.SCALE, -this.height / config.Screen.SCALE));
+            this.body.SetPosition(new box2d.b2Vec2(x / config.Screen.SCALE, y / config.Screen.SCALE));
         }
 
         assignControls() {
@@ -143,10 +147,10 @@
         // Fires on each iteration of our Game Loop
         update() {
             // Return if game currently paused
-            var finalVelocity, impulse, position, velocity;
-       /*     if (e.paused) {
-                return;
-            } */
+            var finalVelocity, impulse, position, velocity, direction;
+            /*     if (e.paused) {
+                     return;
+                 } */
 
             // Get the current position of our Hero
             position = this.body.GetPosition();
@@ -163,9 +167,6 @@
             // Gets the current spinning angle
             this.view.rotation = this.body.GetAngle() * (180 / Math.PI);
 
-            // Set the final velocity to the current
-            // velocity
-            finalVelocity = velocity.x;
 
             // Jumping
             if (controls.jumping && this.onGround() && this.jumpTimePassed()) {
@@ -182,39 +183,45 @@
                 controls.rTally = 0;
             }
 
+            // Get the current (absolute) X-axis velocity
+            // and a direction multiplier
+            finalVelocity = Math.abs(velocity.x);
+            direction = velocity.x >= 0 ? 1 : -1;
 
-            if (controls.right && velocity.x < this.MAX_SPEED) {
-                finalVelocity += (velocity.x > 0 ? 0.45 : 0.6);
+            // Update velocity based on movement
+            if (controls.right || controls.left) {
+                if (controls.right) direction = 1;
+                else direction = -1;
+                
+                if (this.mirrored) direction *= -1;
+                
+                // Cap velocity & play animation
+                if (finalVelocity < this.MAX_SPEED) {
+                    finalVelocity += (finalVelocity > 0 ? 0.45 : 0.6);
 
-                this.view.scaleX = 1;
-                // Only Play walk Animation once
-                if (controls.rTally == 1) {
-                    this.view.gotoAndPlay("heroWalk");
+                    this.view.scaleX = direction;
+                    // Only Play walk Animation once
+                    if (controls.rTally == 5 || controls.lTally == 5) {
+                        this.view.gotoAndPlay("heroWalk");
+                    }
                 }
-            } else if (controls.left && velocity.x > -this.MAX_SPEED) {
-                // Same as above, just different direction
-                finalVelocity -= (velocity.x < 0 ? 0.45 : 0.6);
-                // Slowing down
 
-                this.view.scaleX = -1;
-                // Only Play walk Animation once
-                if (controls.lTally == 1) {
-                    this.view.gotoAndPlay("heroWalk");
-                }
-            } else if (Math.abs(velocity.x) > 0.015) {
-                // The lower this is the faster our hero
-                // will slow down
-                finalVelocity *= 0.96;
-                // Come to a stop
+            // If no keys are pressed, decelerate the hero naturally
+            } else if (finalVelocity > 0.015) {
+                finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
+
+            // Come to a stop
             } else {
                 finalVelocity = 0;
                 this.view.gotoAndPlay("heroIdle");
             }
 
+            if (this.mirrored) console.log(direction + ' ' + finalVelocity);
+
             // Set a new vector point for the hero
             // and apply the new linear velocity(left
             // and right) to our Hero's Box2D Body.
-            velocity = new box2d.b2Vec2(finalVelocity, velocity.y);
+            velocity = new box2d.b2Vec2(finalVelocity * direction, velocity.y);
             this.body.SetLinearVelocity(velocity);
         }
 

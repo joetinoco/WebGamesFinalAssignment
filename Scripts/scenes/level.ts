@@ -9,7 +9,7 @@ module scenes {
 
         // Game Objects
         private _hero: objects.Hero;
-        private _coin: objects.Coin;
+        private _enemy: objects.Hero;
         //private _scoreboard: objects.Scoreboard;
         
         // CONSTRUCTOR ++++++++++++++++++++++
@@ -43,8 +43,11 @@ module scenes {
             var platform4 = new objects.Platform(48, 10, 10, 0.5);
             stage.addChild(platform4.view);
 
-            this._hero = new objects.Hero();
+            this._hero = new objects.Hero(30, 520, false);
             stage.addChild(this._hero.view);
+            
+            this._enemy = new objects.Hero(770, 520, true);
+            stage.addChild(this._enemy.view);
 
             //  scoreboard = new objects.Scoreboard();
 
@@ -88,6 +91,7 @@ module scenes {
         public update(): void {
             
             this._hero.update();
+            this._enemy.update();
 
             //   //  scoreboard.update();
 

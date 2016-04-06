@@ -30,8 +30,10 @@ var scenes;
             stage.addChild(platform3.view);
             var platform4 = new objects.Platform(48, 10, 10, 0.5);
             stage.addChild(platform4.view);
-            this._hero = new objects.Hero();
+            this._hero = new objects.Hero(30, 520, false);
             stage.addChild(this._hero.view);
+            this._enemy = new objects.Hero(770, 520, true);
+            stage.addChild(this._enemy.view);
             //  scoreboard = new objects.Scoreboard();
             var fixDef = new box2d.b2FixtureDef;
             fixDef.density = 0.5;
@@ -65,6 +67,7 @@ var scenes;
         // LEVEL Scene updates here
         Level.prototype.update = function () {
             this._hero.update();
+            this._enemy.update();
             //   //  scoreboard.update();
             reality.update();
         };

@@ -67,7 +67,7 @@ function init(): void {
     setupStats(); 
     
     // set initial scene
-    scene = config.Scene.MENU;
+    scene = config.Scene.LEVEL_1;
     changeScene();
 }
 
