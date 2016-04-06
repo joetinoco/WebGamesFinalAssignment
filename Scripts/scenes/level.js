@@ -16,24 +16,32 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Level.prototype.start = function () {
-            this._ground = new objects.Platform(0, 48, 64, 1);
-            stage.addChild(this._ground.view);
-            var leftWall = new objects.Platform(0, 0, 1, 96);
-            stage.addChild(leftWall.view);
-            var rightWall = new objects.Platform(64, 0, 1, 96);
-            stage.addChild(rightWall.view);
-            var platform1 = new objects.Platform(20, 40, 10, 0.5);
-            stage.addChild(platform1.view);
-            var platform2 = new objects.Platform(28, 30, 10, 0.5);
-            stage.addChild(platform2.view);
-            var platform3 = new objects.Platform(36, 20, 10, 0.5);
-            stage.addChild(platform3.view);
-            var platform4 = new objects.Platform(48, 10, 10, 0.5);
-            stage.addChild(platform4.view);
+            var levelLayout = [
+                { x: 0, y: 48, width: 64, height: 1 },
+                { x: 0, y: 0, width: 1, height: 96 },
+                { x: 64, y: 0, width: 1, height: 96 },
+                // Platforms
+                { x: 20, y: 43, width: 5, height: 5 },
+                { x: 44, y: 43, width: 5, height: 5 },
+                { x: 6, y: 25, width: 5, height: 0.5 },
+                { x: 58, y: 25, width: 5, height: 0.5 },
+                { x: 20, y: 12, width: 5, height: 0.5 },
+                { x: 44, y: 12, width: 5, height: 0.5 },
+                { x: 32, y: 20, width: 15, height: 0.5 },
+                { x: 44, y: 16, width: 0.5, height: 4 },
+            ];
+            levelLayout.forEach(function (elem) {
+                var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height);
+                stage.addChild(wall.view);
+            });
+            // Add hero and enemy
             this._hero = new objects.Hero(30, 520, false);
             stage.addChild(this._hero.view);
             this._enemy = new objects.Hero(770, 520, true);
             stage.addChild(this._enemy.view);
+            // Add exit door
+            this._exitDoor = new objects.ExitDoor(36, 43);
+            stage.addChild(this._exitDoor.view);
             //  scoreboard = new objects.Scoreboard();
             var fixDef = new box2d.b2FixtureDef;
             fixDef.density = 0.5;
@@ -41,26 +49,10 @@ var scenes;
             fixDef.restitution = 0.5;
             var bodyDef = new box2d.b2BodyDef;
             var fixDefShape;
-            // //create some objects
-            // bodyDef.type = box2d.b2Body.b2_dynamicBody;
-            // for (var i = 0; i < 10; ++i) {
-            //     if (Math.random() > 0.5) {
-            //         fixDefShape = new box2d.b2PolygonShape();
-            //         fixDefShape.SetAsBox(
-            //             Math.random() + 0.1 //half width
-            //             , Math.random() + 0.1 //half height
-            //             );
-            //         fixDef.shape = fixDefShape;
-            //     } else {
-            //         fixDefShape = new box2d.b2CircleShape(
-            //             Math.random() + 0.1 //radius
-            //             );
-            //         fixDef.shape = fixDefShape;
-            //     }
-            //     bodyDef.position.x = Math.random() * config.Screen.WIDTH / config.Screen.SCALE;
-            //     bodyDef.position.y = Math.random() * config.Screen.HEIGHT / config.Screen.SCALE;
-            //     world.CreateBody(bodyDef).CreateFixture(fixDef);
-            // } 
+            // Add event listener for collisions
+            var listener = new Box2D.Dynamics.b2ContactListener;
+            listener.BeginContact = this._evaluateCollision;
+            world.SetContactListener(listener);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -70,6 +62,35 @@ var scenes;
             this._enemy.update();
             //   //  scoreboard.update();
             reality.update();
+        };
+        // Reset the level
+        Level.prototype.reset = function () {
+            //TODO: this._hero.body.SetPosition does not work for some reason.
+        };
+        //EVENT HANDLERS ++++++++++++++++++++
+        // Treat collisions 
+        Level.prototype._evaluateCollision = function (contact) {
+            var objA = contact.GetFixtureA().GetBody().GetUserData();
+            var objB = contact.GetFixtureB().GetBody().GetUserData();
+            if (objA && objB) {
+                var collided = [objA.objType, objB.objType];
+                //console.log('Collision between ' + objA.objType + ' and ' + objB.objType);
+                // Treat hero collisions
+                if (collided.indexOf('hero') > -1) {
+                    if (collided.indexOf('enemy') > -1) {
+                        console.log('You touched the enemy. Lose a life');
+                        currentScene.reset();
+                    }
+                    else if (collided.indexOf('exit door') > -1) {
+                        console.log('Level complete! You win!');
+                        currentScene.reset();
+                    }
+                }
+                else if (collided.indexOf('enemy') > -1 && collided.indexOf('exit door') > -1) {
+                    console.log('The enemy reached the door. Lose a life.');
+                    currentScene.reset();
+                }
+            }
         };
         return Level;
     }(objects.Scene));

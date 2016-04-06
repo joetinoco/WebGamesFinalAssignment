@@ -50,8 +50,11 @@ function init() {
     createjs.Ticker.on("tick", gameLoop, this);
     // sets up our stats counting workflow
     setupStats();
-    // set initial scene
-    scene = config.Scene.LEVEL_1;
+    // set initial scene (or skip it depending on the URL)
+    if (location.search)
+        scene = Number(location.search[1]);
+    else
+        scene = config.Scene.MENU;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame

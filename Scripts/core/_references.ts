@@ -14,6 +14,7 @@
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/reality.ts" />
 /// <reference path="../objects/platform.ts" />
+/// <reference path="../objects/exitdoor.ts" />
 /// <reference path="../objects/hero.ts" />
 /// <reference path="../objects/enemy.ts" />
 /// <reference path="../objects/coin.ts" />

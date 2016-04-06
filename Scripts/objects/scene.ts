@@ -38,5 +38,10 @@ module objects {
             this._blackBackground.alpha = 0;
             createjs.Tween.get(this._blackBackground).to({ alpha: 1 }, transitionTime, createjs.Ease.getPowInOut(2)).call(callback);
         }
+        
+        // Reset method
+        public reset(){
+            
+        }
     }
 }

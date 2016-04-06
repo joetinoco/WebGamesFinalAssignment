@@ -7,20 +7,24 @@
         view: createjs.Sprite;
         width: number;
         height: number;
+        initialX: number;
+        initialY: number;
         lastJumpTime: number;
         mirrored: boolean; // Reverse movements
         MAX_SPEED: number = 30;
         JUMP_TIMEOUT: number = 200 // 0.2 second
         JUMP_HEIGHT: number = 70 * config.Screen.SCALE;
         constructor(x: number, y: number, mirrored: boolean) {
-            // Set our Hero controls initially to false
-
             // Sets last jump time to zero, to allow
             // for jumping immediately
             this.lastJumpTime = 0;
 
             // Set movement type for hero or enemy
             this.mirrored = mirrored;
+            
+            // Remember initial position (for scene resets)
+            this.initialX = x;
+            this.initialY = y;
 
             this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
 
@@ -55,6 +59,7 @@
         createBodyDefinition() {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.userData = this.view;
+            this.bodyDef.userData.objType = this.mirrored ? 'enemy' : 'hero';
             this.bodyDef.type = box2d.b2Body.b2_dynamicBody;
             this.bodyDef.position.Set(this.view.x / config.Screen.SCALE, this.view.y / config.Screen.SCALE);
             this.bodyDef.fixedRotation = true; // prevent player rotation
@@ -62,7 +67,7 @@
 
         createHero(x: number, y: number) {
             // Add Hero to world
-            this.body = world.CreateBody(this.bodyDef)
+            this.body = world.CreateBody(this.bodyDef);
             this.body.CreateFixture(this.fixDef);
 
             // Disallows our Hero from being disabled
@@ -76,7 +81,7 @@
             this.body.SetAngularVelocity(0);
 
             // position Hero
-            this.body.SetPosition(new box2d.b2Vec2(x / config.Screen.SCALE, y / config.Screen.SCALE));
+            this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
         }
 
         assignControls() {
@@ -215,8 +220,6 @@
                 finalVelocity = 0;
                 this.view.gotoAndPlay("heroIdle");
             }
-
-            if (this.mirrored) console.log(direction + ' ' + finalVelocity);
 
             // Set a new vector point for the hero
             // and apply the new linear velocity(left

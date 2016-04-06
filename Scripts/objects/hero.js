@@ -2,7 +2,6 @@ var objects;
 (function (objects) {
     var Hero = (function () {
         function Hero(x, y, mirrored) {
-            // Set our Hero controls initially to false
             this.MAX_SPEED = 30;
             this.JUMP_TIMEOUT = 200; // 0.2 second
             this.JUMP_HEIGHT = 70 * config.Screen.SCALE;
@@ -11,6 +10,9 @@ var objects;
             this.lastJumpTime = 0;
             // Set movement type for hero or enemy
             this.mirrored = mirrored;
+            // Remember initial position (for scene resets)
+            this.initialX = x;
+            this.initialY = y;
             this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
             this.width = this.view.getBounds().width / config.Screen.SCALE;
             this.height = this.view.getBounds().height / config.Screen.SCALE;
@@ -36,6 +38,7 @@ var objects;
         Hero.prototype.createBodyDefinition = function () {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.userData = this.view;
+            this.bodyDef.userData.objType = this.mirrored ? 'enemy' : 'hero';
             this.bodyDef.type = box2d.b2Body.b2_dynamicBody;
             this.bodyDef.position.Set(this.view.x / config.Screen.SCALE, this.view.y / config.Screen.SCALE);
             this.bodyDef.fixedRotation = true; // prevent player rotation
@@ -52,7 +55,7 @@ var objects;
             // And no spin
             this.body.SetAngularVelocity(0);
             // position Hero
-            this.body.SetPosition(new box2d.b2Vec2(x / config.Screen.SCALE, y / config.Screen.SCALE));
+            this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
         };
         Hero.prototype.assignControls = function () {
             // Binds key actions
@@ -175,8 +178,6 @@ var objects;
                 finalVelocity = 0;
                 this.view.gotoAndPlay("heroIdle");
             }
-            if (this.mirrored)
-                console.log(direction + ' ' + finalVelocity);
             // Set a new vector point for the hero
             // and apply the new linear velocity(left
             // and right) to our Hero's Box2D Body.
