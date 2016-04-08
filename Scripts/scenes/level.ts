@@ -10,6 +10,7 @@ module scenes {
         private _enemy: objects.Hero;
         private _exitDoor: objects.ExitDoor;
         //private _scoreboard: objects.Scoreboard;
+        public paused: boolean;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -20,6 +21,8 @@ module scenes {
 
         // Start Method
         public start(): void {
+
+            this.paused = false;
 
             var levelLayout = [
                 { x: 0, y: 48, width: 64, height: 1 }, // Floor
@@ -80,18 +83,24 @@ module scenes {
         // LEVEL Scene updates here
         public update(): void {
 
-            this._hero.update();
-            this._enemy.update();
+            if (!this.paused) {
+                
+                this._hero.update();
+                this._enemy.update();
 
-            //   //  scoreboard.update();
+                //   //  scoreboard.update();
 
-            reality.update();
+                reality.update();
+
+            }
+
 
         }
 
         // Reset the level
         public reset(): void {
             //TODO: this._hero.body.SetPosition does not work for some reason.
+
         }
 
 

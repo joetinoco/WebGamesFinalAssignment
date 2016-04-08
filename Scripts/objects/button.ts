@@ -13,8 +13,8 @@
             this.y = y;
             this._pathString = pathString;
 
-            this.width = 150;
-            this.height = 50;
+            this.width = 431;
+            this.height = 100;
 
             if (this.isCentered) {
                 this.regX = this.width * 0.5;

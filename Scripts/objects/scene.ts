@@ -3,6 +3,7 @@ module objects {
     export class Scene extends createjs.Container {
         // PROTECTED INSTANCE VARIABLES
         protected _blackBackground: createjs.Bitmap;
+        public paused: boolean;
          
         // CONSTRUCTOR +++++++++++++++++++++++++++++
         constructor() {

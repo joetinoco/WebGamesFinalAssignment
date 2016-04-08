@@ -83,6 +83,18 @@
             // position Hero
             this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
         }
+        
+        public resetPosition(): void{
+            console.log('Reset position');
+            // A velocity of zero
+            this.body.SetLinearVelocity(new box2d.b2Vec2(0, 0));
+
+            // And no spin
+            this.body.SetAngularVelocity(0);
+
+            // position Hero
+            this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
+        }
 
         assignControls() {
             // Binds key actions
@@ -159,7 +171,7 @@
 
             // Get the current position of our Hero
             position = this.body.GetPosition();
-
+            
             // Get how fast
             velocity = this.body.GetLinearVelocity();
 

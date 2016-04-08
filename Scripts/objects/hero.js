@@ -57,6 +57,15 @@ var objects;
             // position Hero
             this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
         };
+        Hero.prototype.resetPosition = function () {
+            console.log('Reset position');
+            // A velocity of zero
+            this.body.SetLinearVelocity(new box2d.b2Vec2(0, 0));
+            // And no spin
+            this.body.SetAngularVelocity(0);
+            // position Hero
+            this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
+        };
         Hero.prototype.assignControls = function () {
             // Binds key actions
             window.onkeydown = this.onControlDown;

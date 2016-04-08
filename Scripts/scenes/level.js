@@ -8,7 +8,6 @@ var scenes;
 (function (scenes) {
     var Level = (function (_super) {
         __extends(Level, _super);
-        //private _scoreboard: objects.Scoreboard;
         // CONSTRUCTOR ++++++++++++++++++++++
         function Level() {
             _super.call(this);
@@ -16,6 +15,7 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Level.prototype.start = function () {
+            this.paused = false;
             var levelLayout = [
                 { x: 0, y: 48, width: 64, height: 1 },
                 { x: 0, y: 0, width: 1, height: 96 },
@@ -58,10 +58,12 @@ var scenes;
         };
         // LEVEL Scene updates here
         Level.prototype.update = function () {
-            this._hero.update();
-            this._enemy.update();
-            //   //  scoreboard.update();
-            reality.update();
+            if (!this.paused) {
+                this._hero.update();
+                this._enemy.update();
+                //   //  scoreboard.update();
+                reality.update();
+            }
         };
         // Reset the level
         Level.prototype.reset = function () {

@@ -3,7 +3,10 @@
     var assetManifest = [
         // Images
         { id: "loading", src: "Assets/images/loading.jpg" },
-        { id: "StartButton", src: "Assets/images/StartButton.png" },
+        { id: "ButtonSelectionOverlap", src: "Assets/images/BtnSelectionOverlap.png" },
+        { id: "StartButton", src: "Assets/images/BtnStart.png" },
+        { id: "InstructionsButton", src: "Assets/images/BtnInstructions.png" },
+        { id: "MenuBackground", src: "Assets/images/MenuBackground.png" },
         { id: "WhiteBackground", src: "Assets/images/WhiteBackground.png" },
         { id: "BlackBackground", src: "Assets/images/BlackBackground.png" },
         
