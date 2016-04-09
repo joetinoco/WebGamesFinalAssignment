@@ -115,10 +115,18 @@ var objects;
         };
         Hero.prototype.onGround = function () {
             // If our Hero body is making contact
-            // with another body, let him jump
+            // with a floor-like platform, let him jump.
             var contacts;
             contacts = this.body.GetContactList();
-            return contacts && contacts.contact.IsTouching();
+            if (contacts && contacts.contact.IsTouching()) {
+                var objTouched = contacts.contact.GetFixtureA().GetBody().GetUserData();
+                if (!objTouched || objTouched.objType === this.bodyDef.userData.objType) {
+                    objTouched = contacts.contact.GetFixtureB().GetBody().GetUserData();
+                }
+                return objTouched.objType == 'platform' ? true : false;
+            }
+            else
+                return false;
         };
         Hero.prototype.jumpTimePassed = function () {
             // At least the this.JUMP_TIMEOUT value has

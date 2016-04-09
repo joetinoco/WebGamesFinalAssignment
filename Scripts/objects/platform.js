@@ -1,11 +1,12 @@
 var objects;
 (function (objects) {
     var Platform = (function () {
-        function Platform(x, y, width, height) {
+        function Platform(x, y, width, height, isPlatform) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
+            this.isPlatform = isPlatform;
             this.createFixtureDefinition();
             this.createBodyDefinition();
             this.createPlatform();
@@ -23,6 +24,8 @@ var objects;
         Platform.prototype.createBodyDefinition = function () {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.type = box2d.b2Body.b2_staticBody;
+            this.bodyDef.userData = {};
+            this.bodyDef.userData.objType = this.isPlatform ? 'platform' : 'wall';
             this.bodyDef.position.x = this.x;
             this.bodyDef.position.y = this.y;
         };

@@ -29,7 +29,7 @@ module scenes {
 
             // Add platforms
             this._levelElements.platforms.forEach(function(elem) {
-                var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height);
+                var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
                 stage.addChild(wall.view);
             });
 

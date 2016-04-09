@@ -9,11 +9,13 @@
         y: number;
         width: number;
         height: number;
-        constructor(x, y, width, height) {
+        isPlatform: boolean;
+        constructor(x, y, width, height, isPlatform) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
+            this.isPlatform = isPlatform; 
 
             this.createFixtureDefinition();
             this.createBodyDefinition();
@@ -35,6 +37,8 @@
         createBodyDefinition() {
             this.bodyDef = new box2d.b2BodyDef();
             this.bodyDef.type = box2d.b2Body.b2_staticBody;
+            this.bodyDef.userData = {};
+            this.bodyDef.userData.objType = this.isPlatform ? 'platform' : 'wall';
             this.bodyDef.position.x = this.x;
             this.bodyDef.position.y = this.y;
         }
