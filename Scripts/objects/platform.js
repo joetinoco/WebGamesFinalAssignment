@@ -34,8 +34,6 @@ var objects;
             position = this.body.GetPosition();
             // Creates a new Shape object
             this.view = new createjs.Shape();
-            // this.view.x = this.x * config.Screen.SCALE;
-            // this.view.y = this.y * config.Screen.SCALE;
             this.view.regX = this.width * config.Screen.SCALE;
             this.view.regY = this.height * config.Screen.SCALE;
             this.view.graphics.beginFill("#663300")
