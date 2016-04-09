@@ -9,6 +9,7 @@ var scene;
 // Game Scenes
 var menu;
 var gameOver;
+var instructions;
 var level;
 var level2;
 // Physics Variables # Should be here? (global)
@@ -55,7 +56,7 @@ function init() {
     if (location.search)
         scene = Number(location.search[1]);
     else
-        scene = config.Scene.MENU;
+        scene = config.Scene.INSTRUCTIONS;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame
@@ -89,6 +90,13 @@ function changeScene() {
             menu = new scenes.Menu();
             currentScene = menu;
             console.log("Starting MENU Scene");
+            break;
+        case config.Scene.INSTRUCTIONS:
+            // show the Instructions scene
+            stage.removeAllChildren();
+            instructions = new scenes.Instructions();
+            currentScene = instructions;
+            console.log("Starting INSTRUCTIONS Scene");
             break;
         case config.Scene.LEVEL_1:
             // show the LEVEL scene

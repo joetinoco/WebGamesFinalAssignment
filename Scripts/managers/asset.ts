@@ -6,7 +6,9 @@
         { id: "ButtonSelectionOverlap", src: "Assets/images/BtnSelectionOverlap.png" },
         { id: "StartButton", src: "Assets/images/BtnStart.png" },
         { id: "InstructionsButton", src: "Assets/images/BtnInstructions.png" },
+        { id: "BackButton", src: "Assets/images/BtnBack.png" },
         { id: "MenuBackground", src: "Assets/images/MenuBackground.png" },
+        { id: "InstructionsBackground", src: "Assets/images/InstructionsBackground.png" },
         { id: "WhiteBackground", src: "Assets/images/WhiteBackground.png" },
         { id: "BlackBackground", src: "Assets/images/BlackBackground.png" },
         

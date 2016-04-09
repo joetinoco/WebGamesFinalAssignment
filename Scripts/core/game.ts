@@ -12,6 +12,7 @@ var scene: number;
 // Game Scenes
 var menu: scenes.Menu;
 var gameOver: scenes.GameOver;
+var instructions: scenes.Instructions;
 var level: scenes.Level;
 var level2: scenes.Level;
 
@@ -69,7 +70,7 @@ function init(): void {
 
     // set initial scene (or skip it depending on the URL)
     if (location.search) scene = Number(location.search[1]);
-    else scene = config.Scene.MENU;
+    else scene = config.Scene.INSTRUCTIONS;
     changeScene();
 }
 
@@ -112,7 +113,13 @@ function changeScene(): void {
             currentScene = menu;
             console.log("Starting MENU Scene");
             break;
-            
+        case config.Scene.INSTRUCTIONS:
+            // show the Instructions scene
+            stage.removeAllChildren();
+            instructions = new scenes.Instructions();
+            currentScene = instructions;
+            console.log("Starting INSTRUCTIONS Scene");
+            break;
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();

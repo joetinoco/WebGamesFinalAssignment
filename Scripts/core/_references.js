@@ -17,6 +17,7 @@
 /// <reference path="../objects/enemy.ts" />
 /// <reference path="../objects/coin.ts" />
 /// <reference path="../scenes/gameover.ts" />
+/// <reference path="../scenes/instructions.ts" />
 /// <reference path="../scenes/menu.ts" />
 /// <reference path="../scenes/level.ts" /> 
 //# sourceMappingURL=_references.js.map
