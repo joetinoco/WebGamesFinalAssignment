@@ -70,7 +70,7 @@ function init(): void {
 
     // set initial scene (or skip it depending on the URL)
     if (location.search) scene = Number(location.search[1]);
-    else scene = config.Scene.INSTRUCTIONS;
+    else scene = config.Scene.MENU;
     changeScene();
 }
 
