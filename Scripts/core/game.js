@@ -92,7 +92,7 @@ function changeScene() {
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();
-            level = new scenes.Level();
+            level = new scenes.Level(managers.LevelElements.Level_1);
             currentScene = level;
             console.log("Starting LEVEL_1 Scene");
             break;

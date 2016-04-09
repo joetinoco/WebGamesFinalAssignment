@@ -8,7 +8,6 @@ module objects {
         // CONSTRUCTOR +++++++++++++++++++++++++++++
         constructor() {
             super();            
-            this.start();
         }
         
         // Add game objects to my scene in this method

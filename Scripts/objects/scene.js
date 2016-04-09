@@ -11,7 +11,6 @@ var objects;
         // CONSTRUCTOR +++++++++++++++++++++++++++++
         function Scene() {
             _super.call(this);
-            this.start();
         }
         // Add game objects to my scene in this method
         Scene.prototype.start = function () {
