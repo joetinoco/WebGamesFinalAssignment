@@ -44,8 +44,7 @@ var objects;
             stage.addChild(doorLabel);
         };
         return ExitDoor;
-    }());
+    })();
     objects.ExitDoor = ExitDoor;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=exitdoor.js.map

@@ -194,8 +194,7 @@ var objects;
             this.body.SetLinearVelocity(velocity);
         };
         return Hero;
-    }());
+    })();
     objects.Hero = Hero;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=hero.js.map

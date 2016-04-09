@@ -52,5 +52,4 @@
 //         }
 //     }
 // }  
-
 //# sourceMappingURL=scoreboard.js.map

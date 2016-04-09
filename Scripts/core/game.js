@@ -114,5 +114,4 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
-
 //# sourceMappingURL=game.js.map

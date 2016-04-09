@@ -84,8 +84,7 @@ var scenes;
             }
         };
         return Level;
-    }(objects.Scene));
+    })(objects.Scene);
     scenes.Level = Level;
 })(scenes || (scenes = {}));
-
 //# sourceMappingURL=level.js.map

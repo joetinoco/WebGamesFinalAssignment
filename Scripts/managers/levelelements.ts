@@ -1,9 +1,9 @@
 module managers {
     export class LevelElements {
         public static Level_1: any = {
-            heroStartPoint: { x: 30, y: 520 },
-            enemyStartPoint: { x: 770, y: 520 },
-            exitDoorLocation: { x: 36, y: 43 },
+            heroStartPoint: {x: 30, y: 520},
+            enemyStartPoint: {x: 770, y: 520},
+            exitDoorLocation: {x: 36, y: 43},
             platforms: [
                 { x: 0, y: 48, width: 64, height: 1 }, // Floor
                 { x: 0, y: 0, width: 1, height: 96 }, // Left wall

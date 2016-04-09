@@ -40,8 +40,7 @@ var scenes;
             changeScene();
         };
         return GameOver;
-    }(objects.Scene));
+    })(objects.Scene);
     scenes.GameOver = GameOver;
 })(scenes || (scenes = {}));
-
 //# sourceMappingURL=gameover.js.map

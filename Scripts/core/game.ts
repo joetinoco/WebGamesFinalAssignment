@@ -112,6 +112,7 @@ function changeScene(): void {
             currentScene = menu;
             console.log("Starting MENU Scene");
             break;
+            
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();
