@@ -37,7 +37,8 @@ var objects;
         Scene.prototype.reset = function () {
         };
         return Scene;
-    })(createjs.Container);
+    }(createjs.Container));
     objects.Scene = Scene;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=scene.js.map

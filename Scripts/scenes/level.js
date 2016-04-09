@@ -17,7 +17,6 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Level.prototype.start = function () {
-            this.paused = false;
             // Add platforms
             this._levelElements.platforms.forEach(function (elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height);
@@ -42,21 +41,32 @@ var scenes;
             var listener = new Box2D.Dynamics.b2ContactListener;
             listener.BeginContact = this._evaluateCollision;
             world.SetContactListener(listener);
+            // Add event listener for collision resets 
+            this.on('playerLost', this._reset, this);
+            this.on('playerWon', this._nextLevel, this);
+            // Set scene status
+            this._playerLost = false;
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // LEVEL Scene updates here
         Level.prototype.update = function () {
-            if (!this.paused) {
-                this._hero.update();
-                this._enemy.update();
-                //   //  scoreboard.update();
-                reality.update();
-            }
+            this._hero.update(this._playerLost);
+            this._enemy.update(this._playerLost);
+            //   //  scoreboard.update();
+            reality.update();
+            // Reset lost life flag
+            if (this._playerLost)
+                this._playerLost = false;
         };
         // Reset the level
-        Level.prototype.reset = function () {
-            //TODO: this._hero.body.SetPosition does not work for some reason.
+        Level.prototype._reset = function () {
+            this._playerLost = true;
+        };
+        // Switch to the next level
+        Level.prototype._nextLevel = function () {
+            scene += 1;
+            changeScene();
         };
         //EVENT HANDLERS ++++++++++++++++++++
         // Treat collisions 
@@ -70,21 +80,22 @@ var scenes;
                 if (collided.indexOf('hero') > -1) {
                     if (collided.indexOf('enemy') > -1) {
                         console.log('You touched the enemy. Lose a life');
-                        currentScene.reset();
+                        currentScene.dispatchEvent('playerLost');
                     }
                     else if (collided.indexOf('exit door') > -1) {
                         console.log('Level complete! You win!');
-                        currentScene.reset();
+                        currentScene.dispatchEvent('playerWon');
                     }
                 }
                 else if (collided.indexOf('enemy') > -1 && collided.indexOf('exit door') > -1) {
                     console.log('The enemy reached the door. Lose a life.');
-                    currentScene.reset();
+                    currentScene.dispatchEvent('playerLost');
                 }
             }
         };
         return Level;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Level = Level;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=level.js.map

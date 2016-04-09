@@ -56,9 +56,11 @@ module scenes {
 
             // Bind start key action
             window.onkeyup = this._startKeypress;
-            
+
             // Event handler to update the menu selection
+            // and trigger the selected scene
             this.on('selectButton', this._swapButtons, this);
+            this.on('startScene', this._switchScene, this);
 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -81,7 +83,20 @@ module scenes {
             } else {
                 this._btnSelectionOverlap.y = config.Screen.CENTER_Y + 100;
             }
+        }
+
+        private _switchScene() {
+            var nextScene: number;
+            if (this._btnSelectionOverlap.y == config.Screen.CENTER_Y){
+                nextScene = config.Scene.INSTRUCTIONS;
+            } else nextScene = config.Scene.LEVEL_1;
             
+            //FadeOut 
+            currentScene._fadeOut(500, () => {
+                // Switch to the selected scene
+                scene = nextScene;
+                changeScene();
+            });
         }
 
         // any key press
@@ -90,12 +105,7 @@ module scenes {
             switch (e.which) {
                 case keys.ENTER:
                 case keys.SPACEBAR:
-                    //FadeOut 
-                    currentScene._fadeOut(500, () => {
-                        // Switch to the LEVEL 1 Scene
-                        scene = config.Scene.LEVEL_1;
-                        changeScene();
-                    });
+                    currentScene.dispatchEvent("startScene");
                     break;
 
                 default:

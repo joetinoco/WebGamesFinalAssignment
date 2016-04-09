@@ -39,7 +39,9 @@ var scenes;
             // Bind start key action
             window.onkeyup = this._startKeypress;
             // Event handler to update the menu selection
+            // and trigger the selected scene
             this.on('selectButton', this._swapButtons, this);
+            this.on('startScene', this._switchScene, this);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -56,17 +58,26 @@ var scenes;
                 this._btnSelectionOverlap.y = config.Screen.CENTER_Y + 100;
             }
         };
+        Menu.prototype._switchScene = function () {
+            var nextScene;
+            if (this._btnSelectionOverlap.y == config.Screen.CENTER_Y) {
+                nextScene = config.Scene.INSTRUCTIONS;
+            }
+            else
+                nextScene = config.Scene.LEVEL_1;
+            //FadeOut 
+            currentScene._fadeOut(500, function () {
+                // Switch to the selected scene
+                scene = nextScene;
+                changeScene();
+            });
+        };
         // any key press
         Menu.prototype._startKeypress = function (e) {
             switch (e.which) {
                 case keys.ENTER:
                 case keys.SPACEBAR:
-                    //FadeOut 
-                    currentScene._fadeOut(500, function () {
-                        // Switch to the LEVEL 1 Scene
-                        scene = config.Scene.LEVEL_1;
-                        changeScene();
-                    });
+                    currentScene.dispatchEvent("startScene");
                     break;
                 default:
                     currentScene.dispatchEvent("selectButton");
@@ -74,7 +85,8 @@ var scenes;
             }
         };
         return Menu;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Menu = Menu;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=menu.js.map

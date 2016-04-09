@@ -11,7 +11,9 @@ module scenes {
         private _enemy: objects.Hero;
         private _exitDoor: objects.ExitDoor;
         //private _scoreboard: objects.Scoreboard;
-        public paused: boolean;
+
+        // Level status flags
+        private _playerLost: boolean;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor(levelElements) {
@@ -25,8 +27,6 @@ module scenes {
         // Start Method
         public start(): void {
 
-            this.paused = false;
-
             // Add platforms
             this._levelElements.platforms.forEach(function(elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height);
@@ -35,20 +35,20 @@ module scenes {
 
             // Add hero and enemy
             this._hero = new objects.Hero(
-                this._levelElements.heroStartPoint.x, 
-                this._levelElements.heroStartPoint.y, 
+                this._levelElements.heroStartPoint.x,
+                this._levelElements.heroStartPoint.y,
                 false);
             stage.addChild(this._hero.view);
 
             this._enemy = new objects.Hero(
-                this._levelElements.enemyStartPoint.x, 
-                this._levelElements.enemyStartPoint.y, 
+                this._levelElements.enemyStartPoint.x,
+                this._levelElements.enemyStartPoint.y,
                 true);
             stage.addChild(this._enemy.view);
 
             // Add exit door
             this._exitDoor = new objects.ExitDoor(
-                this._levelElements.exitDoorLocation.x, 
+                this._levelElements.exitDoorLocation.x,
                 this._levelElements.exitDoorLocation.y)
             stage.addChild(this._exitDoor.view);
 
@@ -67,31 +67,39 @@ module scenes {
             listener.BeginContact = this._evaluateCollision;
             world.SetContactListener(listener);
 
+            // Add event listener for collision resets 
+            this.on('playerLost', this._reset, this);
+            this.on('playerWon', this._nextLevel, this);
+
+            // Set scene status
+            this._playerLost = false;
+
             // add this scene to the global stage container
             stage.addChild(this);
         }
 
         // LEVEL Scene updates here
         public update(): void {
+            this._hero.update(this._playerLost);
+            this._enemy.update(this._playerLost);
 
-            if (!this.paused) {
-                
-                this._hero.update();
-                this._enemy.update();
+            //   //  scoreboard.update();
 
-                //   //  scoreboard.update();
+            reality.update();
 
-                reality.update();
-
-            }
-
-
+            // Reset lost life flag
+            if (this._playerLost) this._playerLost = false;
         }
 
         // Reset the level
-        public reset(): void {
-            //TODO: this._hero.body.SetPosition does not work for some reason.
-
+        private _reset(): void {
+            this._playerLost = true;
+        }
+        
+        // Switch to the next level
+        private _nextLevel(): void {
+            scene += 1;
+            changeScene();
         }
 
 
@@ -110,14 +118,14 @@ module scenes {
                 if (collided.indexOf('hero') > -1) {
                     if (collided.indexOf('enemy') > -1) {
                         console.log('You touched the enemy. Lose a life');
-                        currentScene.reset();
+                        currentScene.dispatchEvent('playerLost');
                     } else if (collided.indexOf('exit door') > -1) {
                         console.log('Level complete! You win!');
-                        currentScene.reset();
+                        currentScene.dispatchEvent('playerWon');
                     }
                 } else if (collided.indexOf('enemy') > -1 && collided.indexOf('exit door') > -1) {
                     console.log('The enemy reached the door. Lose a life.');
-                    currentScene.reset();
+                    currentScene.dispatchEvent('playerLost');
                 }
             }
         }

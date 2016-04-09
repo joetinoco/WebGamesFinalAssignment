@@ -123,6 +123,8 @@ function changeScene(): void {
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();
+            // Create a new reality ¯\_(ツ)_/¯
+            reality = new objects.Reality();
             level = new scenes.Level(managers.LevelElements.Level_1);
             currentScene = level;
             console.log("Starting LEVEL_1 Scene");
@@ -130,6 +132,8 @@ function changeScene(): void {
         case config.Scene.LEVEL_2:
             // show the LEVEL scene
             stage.removeAllChildren();
+            // Create a new reality ¯\_(ツ)_/¯
+            reality = new objects.Reality();
             level2 = new scenes.Level(managers.LevelElements.Level_2);
             currentScene = level2;
             console.log("Starting LEVEL_2 Scene");
@@ -137,6 +141,8 @@ function changeScene(): void {
         case config.Scene.GAME_OVER:
             // show the game OVER scene
             stage.removeAllChildren();
+            // Create a new reality ¯\_(ツ)_/¯
+            reality = new objects.Reality();
             gameOver = new scenes.GameOver();
             currentScene = gameOver;
             console.log("Starting GAME_OVER Scene");

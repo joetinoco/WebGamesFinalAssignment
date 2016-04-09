@@ -127,7 +127,7 @@ var objects;
             return createjs.Ticker.getTime() - this.lastJumpTime > this.JUMP_TIMEOUT;
         };
         // Fires on each iteration of our Game Loop
-        Hero.prototype.update = function () {
+        Hero.prototype.update = function (playerLost) {
             // Return if game currently paused
             var finalVelocity, impulse, position, velocity, direction;
             /*     if (e.paused) {
@@ -137,64 +137,74 @@ var objects;
             position = this.body.GetPosition();
             // Get how fast
             velocity = this.body.GetLinearVelocity();
-            // Move our view (Our EaselJS Bitmap)
-            // to the new coordinates to match the
-            // Box2D Body's position of the hero
-            this.view.x = position.x * config.Screen.SCALE;
-            this.view.y = position.y * config.Screen.SCALE;
-            // Gets the current spinning angle
-            this.view.rotation = this.body.GetAngle() * (180 / Math.PI);
-            // Jumping
-            if (controls.jumping && this.onGround() && this.jumpTimePassed()) {
-                // Assign the last jump time to the current
-                // time of the running game
-                this.lastJumpTime = createjs.Ticker.getTime();
-                // Apply an impulse by defining a new vector
-                // point with a negative Y value-- jump height
-                impulse = new box2d.b2Vec2(0, -this.JUMP_HEIGHT);
-                this.body.ApplyImpulse(impulse, position);
-                this.view.gotoAndPlay("heroJump");
-                createjs.Sound.play("jump");
-                controls.lTally = 0;
-                controls.rTally = 0;
-            }
-            // Get the current (absolute) X-axis velocity
-            // and a direction multiplier
-            finalVelocity = Math.abs(velocity.x);
-            direction = velocity.x >= 0 ? 1 : -1;
-            // Update velocity based on movement
-            if (controls.right || controls.left) {
-                if (controls.right)
-                    direction = 1;
-                else
-                    direction = -1;
-                if (this.mirrored)
-                    direction *= -1;
-                // Cap velocity & play animation
-                if (finalVelocity < this.MAX_SPEED) {
-                    finalVelocity += (finalVelocity > 0 ? 0.45 : 0.6);
-                    this.view.scaleX = direction;
-                    // Only Play walk Animation once
-                    if (controls.rTally == 5 || controls.lTally == 5) {
-                        this.view.gotoAndPlay("heroWalk");
-                    }
-                }
-            }
-            else if (finalVelocity > 0.015) {
-                finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
+            if (playerLost) {
+                // Reset player position
+                this.body.SetLinearVelocity(new box2d.b2Vec2(0, 0));
+                this.body.SetAngularVelocity(0);
+                this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
             }
             else {
-                finalVelocity = 0;
-                this.view.gotoAndPlay("heroIdle");
+                // Normal movement:
+                // Move our view (Our EaselJS Bitmap)
+                // to the new coordinates to match the
+                // Box2D Body's position of the hero
+                this.view.x = position.x * config.Screen.SCALE;
+                this.view.y = position.y * config.Screen.SCALE;
+                // Gets the current spinning angle
+                this.view.rotation = this.body.GetAngle() * (180 / Math.PI);
+                // Jumping
+                if (controls.jumping && this.onGround() && this.jumpTimePassed()) {
+                    // Assign the last jump time to the current
+                    // time of the running game
+                    this.lastJumpTime = createjs.Ticker.getTime();
+                    // Apply an impulse by defining a new vector
+                    // point with a negative Y value-- jump height
+                    impulse = new box2d.b2Vec2(0, -this.JUMP_HEIGHT);
+                    this.body.ApplyImpulse(impulse, position);
+                    this.view.gotoAndPlay("heroJump");
+                    createjs.Sound.play("jump");
+                    controls.lTally = 0;
+                    controls.rTally = 0;
+                }
+                // Get the current (absolute) X-axis velocity
+                // and a direction multiplier
+                finalVelocity = Math.abs(velocity.x);
+                direction = velocity.x >= 0 ? 1 : -1;
+                // Update velocity based on movement
+                if (controls.right || controls.left) {
+                    if (controls.right)
+                        direction = 1;
+                    else
+                        direction = -1;
+                    if (this.mirrored)
+                        direction *= -1;
+                    // Cap velocity & play animation
+                    if (finalVelocity < this.MAX_SPEED) {
+                        finalVelocity += (finalVelocity > 0 ? 0.45 : 0.6);
+                        this.view.scaleX = direction;
+                        // Only Play walk Animation once
+                        if (controls.rTally == 5 || controls.lTally == 5) {
+                            this.view.gotoAndPlay("heroWalk");
+                        }
+                    }
+                }
+                else if (finalVelocity > 0.015) {
+                    finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
+                }
+                else {
+                    finalVelocity = 0;
+                    this.view.gotoAndPlay("heroIdle");
+                }
+                // Set a new vector point for the hero
+                // and apply the new linear velocity(left
+                // and right) to our Hero's Box2D Body.
+                velocity = new box2d.b2Vec2(finalVelocity * direction, velocity.y);
+                this.body.SetLinearVelocity(velocity);
             }
-            // Set a new vector point for the hero
-            // and apply the new linear velocity(left
-            // and right) to our Hero's Box2D Body.
-            velocity = new box2d.b2Vec2(finalVelocity * direction, velocity.y);
-            this.body.SetLinearVelocity(velocity);
         };
         return Hero;
-    })();
+    }());
     objects.Hero = Hero;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=hero.js.map

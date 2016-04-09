@@ -10,4 +10,5 @@ var keys;
     keys.D = 68;
     keys.W = 87;
 })(keys || (keys = {}));
+
 //# sourceMappingURL=keys.js.map
