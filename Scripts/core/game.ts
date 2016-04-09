@@ -13,6 +13,7 @@ var scene: number;
 var menu: scenes.Menu;
 var gameOver: scenes.GameOver;
 var level: scenes.Level;
+var level2: scenes.Level;
 
 // Physics Variables # Should be here? (global)
 var world: Box2D.Dynamics.b2World;
@@ -47,25 +48,25 @@ function preload(): void {
 function init(): void {
     // create a reference the HTML canvas Element
     canvas = config.ARCADE_CANVAS;
-    
+
     // Setup box2d reality (here?)
     reality = new objects.Reality();
-    
+
     // create our main display list container
     stage = new createjs.Stage(canvas);
-    
+
     // Enable mouse events
     stage.enableMouseOver(20);
-    
+
     // set the framerate to 60 frames per second
     createjs.Ticker.setFPS(config.Game.FPS);
-    
+
     // create an event listener to count off frames
     createjs.Ticker.on("tick", gameLoop, this);
-    
+
     // sets up our stats counting workflow
-    setupStats(); 
-    
+    setupStats();
+
     // set initial scene (or skip it depending on the URL)
     if (location.search) scene = Number(location.search[1]);
     else scene = config.Scene.MENU;
@@ -75,16 +76,16 @@ function init(): void {
 // Main Game Loop function that handles what happens each "tick" or frame
 function gameLoop(event: createjs.Event): void {
     // start collecting stats for this frame
-    stats.begin(); 
-    
+    stats.begin();
+
     // calling State's update method
-    currentScene.update(); 
-    
+    currentScene.update();
+
     // redraw/refresh stage every frame
     stage.update();
-    
+
     reality.update(); // (here?)
-    
+
     // stop collecting stats for this frame
     stats.end();
 }
@@ -101,7 +102,7 @@ function setupStats(): void {
 
 // Finite State Machine used to change Scenes
 function changeScene(): void {
-    
+
     // Launch various scenes
     switch (scene) {
         case config.Scene.MENU:
@@ -114,9 +115,16 @@ function changeScene(): void {
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();
-            level = new scenes.Level();
+            level = new scenes.Level(managers.LevelElements.Level_1);
             currentScene = level;
             console.log("Starting LEVEL_1 Scene");
+            break;
+        case config.Scene.LEVEL_2:
+            // show the LEVEL scene
+            stage.removeAllChildren();
+            level2 = new scenes.Level(managers.LevelElements.Level_2);
+            currentScene = level2;
+            console.log("Starting LEVEL_2 Scene");
             break;
         case config.Scene.GAME_OVER:
             // show the game OVER scene

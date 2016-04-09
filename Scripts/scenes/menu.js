@@ -11,6 +11,7 @@ var scenes;
         // CONSTRUCTOR ++++++++++++++++++++++
         function Menu() {
             _super.call(this);
+            this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
@@ -58,6 +59,7 @@ var scenes;
         // any key press
         Menu.prototype._startKeypress = function (e) {
             switch (e.which) {
+                case keys.ENTER:
                 case keys.SPACEBAR:
                     //FadeOut 
                     currentScene._fadeOut(500, function () {

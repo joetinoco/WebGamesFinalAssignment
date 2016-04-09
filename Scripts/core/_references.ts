@@ -6,6 +6,7 @@
 /// <reference path="../config/keys.ts" />
 
 /// <reference path="../managers/asset.ts" />
+/// <reference path="../managers/levelelements.ts" />
 
 /// <reference path="../objects/asset.ts" />
 /// <reference path="../objects/label.ts" />

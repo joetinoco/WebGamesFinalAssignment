@@ -10,6 +10,7 @@ var scene;
 var menu;
 var gameOver;
 var level;
+var level2;
 // Physics Variables # Should be here? (global)
 var world;
 var reality;
@@ -92,9 +93,16 @@ function changeScene() {
         case config.Scene.LEVEL_1:
             // show the LEVEL scene
             stage.removeAllChildren();
-            level = new scenes.Level();
+            level = new scenes.Level(managers.LevelElements.Level_1);
             currentScene = level;
             console.log("Starting LEVEL_1 Scene");
+            break;
+        case config.Scene.LEVEL_2:
+            // show the LEVEL scene
+            stage.removeAllChildren();
+            level2 = new scenes.Level(managers.LevelElements.Level_2);
+            currentScene = level2;
+            console.log("Starting LEVEL_2 Scene");
             break;
         case config.Scene.GAME_OVER:
             // show the game OVER scene

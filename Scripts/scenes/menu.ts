@@ -10,6 +10,7 @@ module scenes {
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
+            this.start();
         }
 
         // PUBLIC METHODS +++++++++++++++++++++
@@ -87,6 +88,7 @@ module scenes {
         private _startKeypress(e) {
 
             switch (e.which) {
+                case keys.ENTER:
                 case keys.SPACEBAR:
                     //FadeOut 
                     currentScene._fadeOut(500, () => {
