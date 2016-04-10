@@ -4,8 +4,8 @@ var objects;
         function Reality() {
             this.createPhysics();
             this.createArcadeCanvas();
-            // this.createDebugCanvas();
-            // this.createDebugDraw();
+            this.createDebugCanvas();
+            this.createDebugDraw();
         }
         Reality.prototype.createPhysics = function () {
             // Adds gravity to world, no horizontal
@@ -26,10 +26,14 @@ var objects;
             this.debugDraw = new box2d.b2DebugDraw();
             this.debugDraw.SetSprite(this.debugContext);
             this.debugDraw.SetDrawScale(config.Screen.SCALE);
-            this.debugDraw.SetFillAlpha(0.3); // Set the Opacity of objects
+            this.debugDraw.SetFillAlpha(0.7); // Set the Opacity of objects
             this.debugDraw.SetLineThickness(1.0);
             this.debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit);
-            world.SetDebugDraw(this.debugDraw); // Set world's draw container
+            world.SetDebugDraw(null); // Set world's draw container
+        };
+        Reality.prototype.enableDebugLayer = function () {
+            console.log('Debug layer enabled');
+            world.SetDebugDraw(this.debugDraw);
         };
         Reality.prototype.update = function () {
             world.Step(1 / 60 //frame-rate
@@ -40,7 +44,8 @@ var objects;
             world.ClearForces();
         };
         return Reality;
-    })();
+    }());
     objects.Reality = Reality;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=reality.js.map

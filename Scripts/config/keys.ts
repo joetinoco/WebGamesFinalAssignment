@@ -8,4 +8,5 @@
     export var A: number = 65;
     export var D: number = 68;
     export var W: number = 87;
+    export var GRAVE: number = 192;
 } 

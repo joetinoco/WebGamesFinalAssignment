@@ -51,7 +51,8 @@ var objects;
             self.countdown--;
         };
         return Scoreboard;
-    })();
+    }());
     objects.Scoreboard = Scoreboard;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=scoreboard.js.map

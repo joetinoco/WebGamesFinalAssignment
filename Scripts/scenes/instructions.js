@@ -19,6 +19,9 @@ var scenes;
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult("InstructionsBackground"));
             this.addChild(this._backgroundImage);
+            // Add music
+            this._instructionsMusic = new objects.Sound('menu');
+            this._instructionsMusic.play(-1);
             // add back button
             this._btnBack = new objects.Button("BackButton", config.Screen.CENTER_X - 150, config.Screen.CENTER_Y + 250, true);
             this.addChild(this._btnBack);
@@ -33,6 +36,9 @@ var scenes;
         };
         // INTRO Scene updates here
         Instructions.prototype.update = function () {
+        };
+        Instructions.prototype.destroy = function () {
+            this._instructionsMusic.stop();
         };
         //EVENT HANDLERS ++++++++++++++++++++
         // any key press
@@ -53,7 +59,8 @@ var scenes;
             }
         };
         return Instructions;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Instructions = Instructions;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=instructions.js.map

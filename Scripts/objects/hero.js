@@ -20,6 +20,7 @@ var objects;
             this.view.regY = this.height * 0.5 * config.Screen.SCALE;
             this.createFixtureDefinition();
             this.createBodyDefinition();
+            this.jumpSound = new objects.Sound('jump');
             this.createHero(x, y);
             // Set up movement and controls
             this.assignControls();
@@ -111,6 +112,9 @@ var objects;
                 case keys.UP:
                     controls.jumping = false;
                     break;
+                case keys.GRAVE:
+                    reality.enableDebugLayer();
+                    break;
             }
         };
         Hero.prototype.onGround = function () {
@@ -170,7 +174,7 @@ var objects;
                     impulse = new box2d.b2Vec2(0, -this.JUMP_HEIGHT);
                     this.body.ApplyImpulse(impulse, position);
                     this.view.gotoAndPlay("heroJump");
-                    createjs.Sound.play("jump");
+                    this.jumpSound.play();
                     controls.lTally = 0;
                     controls.rTally = 0;
                 }
@@ -211,7 +215,8 @@ var objects;
             }
         };
         return Hero;
-    })();
+    }());
     objects.Hero = Hero;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=hero.js.map

@@ -19,6 +19,9 @@ var objects;
         // update game objects in my scene
         Scene.prototype.update = function () {
         };
+        // remove/disable game objects in my scene
+        Scene.prototype.destroy = function () {
+        };
         // Setup Background
         Scene.prototype._setupBackground = function (background) {
             this._blackBackground = new createjs.Bitmap(managers.Assets.loader.getResult(background));
@@ -37,7 +40,8 @@ var objects;
         Scene.prototype.reset = function () {
         };
         return Scene;
-    })(createjs.Container);
+    }(createjs.Container));
     objects.Scene = Scene;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=scene.js.map

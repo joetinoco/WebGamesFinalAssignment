@@ -6,6 +6,7 @@ module scenes {
         private _btnInstructions: objects.Button;
         private _btnStart: objects.Button;
         private _btnSelectionOverlap: createjs.Bitmap;
+        private _menuMusic: objects.Sound;
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -21,6 +22,10 @@ module scenes {
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult("MenuBackground"));
             this.addChild(this._backgroundImage);
+            
+            // Add music
+            this._menuMusic = new objects.Sound('menu');
+            this._menuMusic.play(-1);
 
             // add instructions button
             this._btnInstructions = new objects.Button(
@@ -70,9 +75,10 @@ module scenes {
         public update(): void {
 
         }
-
-
-
+        
+        public destroy(): void {
+            this._menuMusic.stop();
+        }
 
         //EVENT HANDLERS ++++++++++++++++++++
 

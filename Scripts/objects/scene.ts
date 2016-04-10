@@ -20,6 +20,11 @@ module objects {
 
         }
         
+        // remove/disable game objects in my scene
+        public destroy(): void {
+
+        }
+        
         // Setup Background
         protected _setupBackground(background:string): void {
             this._blackBackground = new createjs.Bitmap(managers.Assets.loader.getResult(background));

@@ -4,6 +4,7 @@ module managers {
             heroStartPoint: {x: 30, y: 520},
             enemyStartPoint: {x: 770, y: 520},
             exitDoorLocation: {x: 36, y: 43},
+            music: 'level1',
             platforms: [
                 { x: 0,  y: 48, width: 64, height:  1, isPlatform: true }, // Floor
                 { x: 0,  y: 0,  width: 1,  height: 96, isPlatform: false }, // Left wall
@@ -78,6 +79,7 @@ module managers {
             heroStartPoint: { x: 30, y: 520 },
             enemyStartPoint: { x: 770, y: 50 },
             exitDoorLocation: { x: 61, y: 43 },
+            music: 'level2',
             platforms: [
                 { x:  0, y: 48, width: 64, height: 1  , isPlatform: true }, // Floor
                 { x:  0, y:  0, width:  1, height: 96 , isPlatform: false }, // Left wall
@@ -95,7 +97,9 @@ module managers {
                 { x:  35, y:   10, width:   3, height: 0.5 , isPlatform: true },
                 { x: 32.5, y: -30, width: 0.5, height:  40 , isPlatform: false },
                 { x:  37.5, y:   14, width: 0.5, height:   4 , isPlatform: false }
-            ]
+            ],
+            background: "FlorestBackground",
+            images: []
         }
     }
 }

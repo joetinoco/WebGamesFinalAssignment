@@ -21,6 +21,9 @@ var scenes;
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult(this._levelElements.background));
             this.addChild(this._backgroundImage);
+            // Add music
+            this._levelMusic = new objects.Sound(this._levelElements.music);
+            this._levelMusic.play(-1); // -1 means loop indefinitely
             // Add platforms
             this._levelElements.platforms.forEach(function (elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
@@ -72,6 +75,9 @@ var scenes;
             scoreboard.update();
             reality.update();
         };
+        Level.prototype.destroy = function () {
+            this._levelMusic.stop();
+        };
         Level.prototype._checkGameStatus = function () {
             if (this._playerLost) {
                 scoreboard.lives--;
@@ -80,6 +86,7 @@ var scenes;
                 this._playerLost = false;
             }
             if (scoreboard.lives < 0) {
+                this.destroy();
                 scene = config.Scene.GAME_OVER;
                 changeScene();
             }
@@ -121,7 +128,8 @@ var scenes;
             }
         };
         return Level;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Level = Level;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=level.js.map

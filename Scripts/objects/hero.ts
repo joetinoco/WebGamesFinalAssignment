@@ -10,6 +10,7 @@
         initialX: number;
         initialY: number;
         lastJumpTime: number;
+        jumpSound: objects.Sound;
         mirrored: boolean; // Reverse movements
         MAX_SPEED: number = 30;
         JUMP_TIMEOUT: number = 200 // 0.2 second
@@ -36,6 +37,7 @@
 
             this.createFixtureDefinition();
             this.createBodyDefinition();
+            this.jumpSound = new objects.Sound('jump');
             this.createHero(x, y);
 
             // Set up movement and controls
@@ -143,6 +145,9 @@
                 case keys.UP:
                     controls.jumping = false;
                     break;
+                case keys.GRAVE: // That "`" key
+                    reality.enableDebugLayer(); 
+                    break;
             }
         }
 
@@ -208,7 +213,7 @@
                     impulse = new box2d.b2Vec2(0, -this.JUMP_HEIGHT);
                     this.body.ApplyImpulse(impulse, position);
                     this.view.gotoAndPlay("heroJump");
-                    createjs.Sound.play("jump");
+                    this.jumpSound.play();
                     controls.lTally = 0;
                     controls.rTally = 0;
                 }

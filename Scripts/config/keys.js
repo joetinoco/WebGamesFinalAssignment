@@ -9,5 +9,7 @@ var keys;
     keys.A = 65;
     keys.D = 68;
     keys.W = 87;
+    keys.GRAVE = 192;
 })(keys || (keys = {}));
+
 //# sourceMappingURL=keys.js.map

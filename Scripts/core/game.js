@@ -16,24 +16,6 @@ var level2;
 var world;
 var reality;
 var scoreboard;
-// var assetData:objects.Asset[] = [
-//     {id: "BackButton", src:"../../Assets/images/BackButton.png"},
-//     {id: "Nextbutton", src:"../../Assets/images/Nextbutton.png"},
-//     {id: "StartButton", src:"../../Assets/images/StartButton.png"},
-//     {id: "MenuBackground", src: "../../Assets/images/MenuBackground.jpg" },
-//     {id: "GameOverBackground", src: "../../Assets/images/GameOverBackground.jpg" },
-//     {id: "StartOverButton", src:"../../Assets/images/StartOverButton.png"},
-//     {id: "ResetButton", src:"../../Assets/images/ResetButton.png"},
-//     {id: "QuitButton", src:"../../Assets/images/QuitButton.png"},
-//     {id: "BlackBackground", src:"../../Assets/images/BlackBackground.png"},
-//     {id: "WhiteBackground", src:"../../Assets/images/WhiteBackground.png"}
-// ];
-// function preload() {
-//     assets = new createjs.LoadQueue();
-//     assets.installPlugin(createjs.Sound);
-//     assets.on("complete", init, this);
-//     assets.loadManifest(assetData);
-// }
 function preload() {
     managers.Assets.init();
     managers.Assets.loader.addEventListener("complete", init);
@@ -90,6 +72,8 @@ function changeScene() {
         case config.Scene.MENU:
             // show the MENU scene
             stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
             menu = new scenes.Menu();
             currentScene = menu;
             console.log("Starting MENU Scene");
@@ -97,12 +81,16 @@ function changeScene() {
         case config.Scene.INSTRUCTIONS:
             // show the Instructions scene
             stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
             instructions = new scenes.Instructions();
             currentScene = instructions;
             console.log("Starting INSTRUCTIONS Scene");
             break;
         case config.Scene.LEVEL_1:
             stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
             // Reset reality ¯\_(ツ)_/¯
             reality = new objects.Reality();
             level = new scenes.Level(managers.LevelElements.Level_1);
@@ -111,6 +99,8 @@ function changeScene() {
             break;
         case config.Scene.LEVEL_2:
             stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
             // Reset reality ¯\_(ツ)_/¯
             reality = new objects.Reality();
             level2 = new scenes.Level(managers.LevelElements.Level_2);
@@ -120,6 +110,8 @@ function changeScene() {
         case config.Scene.GAME_OVER:
             // show the game OVER scene
             stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
             // Reset reality ¯\_(ツ)_/¯
             reality = new objects.Reality();
             gameOver = new scenes.GameOver();
@@ -129,4 +121,5 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
+
 //# sourceMappingURL=game.js.map

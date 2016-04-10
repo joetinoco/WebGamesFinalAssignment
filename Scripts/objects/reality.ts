@@ -9,8 +9,8 @@
 
             this.createPhysics();
             this.createArcadeCanvas();
-            // this.createDebugCanvas();
-            // this.createDebugDraw();
+            this.createDebugCanvas();
+            this.createDebugDraw();
         }
 
         createPhysics() {
@@ -36,10 +36,15 @@
             this.debugDraw = new box2d.b2DebugDraw();
             this.debugDraw.SetSprite(this.debugContext);
             this.debugDraw.SetDrawScale(config.Screen.SCALE);
-            this.debugDraw.SetFillAlpha(0.3); // Set the Opacity of objects
+            this.debugDraw.SetFillAlpha(0.7); // Set the Opacity of objects
             this.debugDraw.SetLineThickness(1.0);
             this.debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit);
-            world.SetDebugDraw(this.debugDraw); // Set world's draw container
+            world.SetDebugDraw(null); // Set world's draw container
+        }
+
+        enableDebugLayer() {
+            console.log('Debug layer enabled');
+            world.SetDebugDraw(this.debugDraw);
         }
 
         update() {
@@ -47,7 +52,7 @@
                 1 / 60   //frame-rate
                 , 10       //velocity iterations
                 , 10       //position iterations
-                );
+            );
             world.DrawDebugData();
             world.ClearForces();
         }

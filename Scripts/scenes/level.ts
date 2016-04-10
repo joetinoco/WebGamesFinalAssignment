@@ -13,6 +13,10 @@ module scenes {
 
         // Level status flags
         private _playerLost: boolean;
+        
+        // Level music
+        private _levelMusic: objects.Sound;
+        
 
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor(levelElements) {
@@ -30,6 +34,10 @@ module scenes {
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult(this._levelElements.background));
             this.addChild(this._backgroundImage);
+            
+            // Add music
+            this._levelMusic = new objects.Sound(this._levelElements.music);
+            this._levelMusic.play(-1); // -1 means loop indefinitely
 
             // Add platforms
             this._levelElements.platforms.forEach(function(elem) {
@@ -104,6 +112,10 @@ module scenes {
             reality.update();
         }
         
+        public destroy(): void {
+            this._levelMusic.stop();
+        }
+        
         private _checkGameStatus(): void { 
             if(this._playerLost){
                 scoreboard.lives--;
@@ -112,6 +124,7 @@ module scenes {
                 this._playerLost = false;
             }
             if(scoreboard.lives < 0){
+                this.destroy();
                 scene = config.Scene.GAME_OVER;
                 changeScene();
             }

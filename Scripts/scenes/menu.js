@@ -19,6 +19,9 @@ var scenes;
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult("MenuBackground"));
             this.addChild(this._backgroundImage);
+            // Add music
+            this._menuMusic = new objects.Sound('menu');
+            this._menuMusic.play(-1);
             // add instructions button
             this._btnInstructions = new objects.Button("InstructionsButton", config.Screen.CENTER_X, config.Screen.CENTER_Y, true);
             this.addChild(this._btnInstructions);
@@ -47,6 +50,9 @@ var scenes;
         };
         // INTRO Scene updates here
         Menu.prototype.update = function () {
+        };
+        Menu.prototype.destroy = function () {
+            this._menuMusic.stop();
         };
         //EVENT HANDLERS ++++++++++++++++++++
         Menu.prototype._swapButtons = function () {
@@ -85,7 +91,8 @@ var scenes;
             }
         };
         return Menu;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Menu = Menu;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=menu.js.map

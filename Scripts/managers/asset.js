@@ -44,9 +44,14 @@ var managers;
         { id: "FlorestTile17", src: "Assets/images/florest/tiles/17.png" },
         { id: "FlorestTile18", src: "Assets/images/florest/tiles/18.png" },
         // Sounds
-        { id: "pickup", src: "Assets/sounds/coin.mp3" },
-        { id: "hurt", src: "Assets/sounds/hurt.mp3" },
-        { id: "jump", src: "Assets/sounds/jump.mp3" }
+        { id: "jump", src: "Assets/sounds/jump.mp3" },
+        // Music
+        { id: "menu", src: "Assets/sounds/menu.ogg" },
+        { id: "level1", src: "Assets/sounds/level1.ogg" },
+        { id: "level2", src: "Assets/sounds/level2.ogg" },
+        { id: "level3", src: "Assets/sounds/level3.ogg" },
+        { id: "gameover", src: "Assets/sounds/gameover.ogg" },
+        { id: "gamewin", src: "Assets/sounds/gamewin.ogg" }
     ];
     var heroData = {
         "images": ["Assets/images/hero/heroAtlas.png"],
@@ -267,7 +272,8 @@ var managers;
             this.bitMapFont = new createjs.SpriteSheet(bitMapFontData);
         };
         return Assets;
-    })();
+    }());
     managers.Assets = Assets;
 })(managers || (managers = {}));
+
 //# sourceMappingURL=asset.js.map
