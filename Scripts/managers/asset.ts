@@ -46,6 +46,7 @@
         
         // Sounds
         { id: "jump", src: "Assets/sounds/jump.mp3" },
+        { id: "loselife", src: "Assets/sounds/loselife.ogg" },
         // Music
         { id: "menu", src: "Assets/sounds/menu.ogg" },
         { id: "level1", src: "Assets/sounds/level1.ogg" },

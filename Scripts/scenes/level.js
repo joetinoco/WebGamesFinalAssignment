@@ -24,6 +24,8 @@ var scenes;
             // Add music
             this._levelMusic = new objects.Sound(this._levelElements.music);
             this._levelMusic.play(-1); // -1 means loop indefinitely
+            // Add SFX
+            this._lostLife = new objects.Sound('loselife');
             // Add platforms
             this._levelElements.platforms.forEach(function (elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
@@ -80,6 +82,7 @@ var scenes;
         };
         Level.prototype._checkGameStatus = function () {
             if (this._playerLost) {
+                this._lostLife.play();
                 scoreboard.lives--;
                 scoreboard.restartCountdown();
                 // Reset lost life flag

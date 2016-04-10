@@ -14,8 +14,9 @@ module scenes {
         // Level status flags
         private _playerLost: boolean;
         
-        // Level music
+        // Level music & sounds
         private _levelMusic: objects.Sound;
+        private _lostLife: objects.Sound;
         
 
         // CONSTRUCTOR ++++++++++++++++++++++
@@ -38,6 +39,9 @@ module scenes {
             // Add music
             this._levelMusic = new objects.Sound(this._levelElements.music);
             this._levelMusic.play(-1); // -1 means loop indefinitely
+            
+            // Add SFX
+            this._lostLife = new objects.Sound('loselife');
 
             // Add platforms
             this._levelElements.platforms.forEach(function(elem) {
@@ -118,6 +122,7 @@ module scenes {
         
         private _checkGameStatus(): void { 
             if(this._playerLost){
+                this._lostLife.play();
                 scoreboard.lives--;
                 scoreboard.restartCountdown();
                 // Reset lost life flag
