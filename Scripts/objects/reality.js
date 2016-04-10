@@ -4,8 +4,8 @@ var objects;
         function Reality() {
             this.createPhysics();
             this.createArcadeCanvas();
-            this.createDebugCanvas();
-            this.createDebugDraw();
+            // this.createDebugCanvas();
+            // this.createDebugDraw();
         }
         Reality.prototype.createPhysics = function () {
             // Adds gravity to world, no horizontal

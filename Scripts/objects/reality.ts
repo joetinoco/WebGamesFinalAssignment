@@ -9,8 +9,8 @@
 
             this.createPhysics();
             this.createArcadeCanvas();
-            this.createDebugCanvas();
-            this.createDebugDraw();
+            // this.createDebugCanvas();
+            // this.createDebugDraw();
         }
 
         createPhysics() {

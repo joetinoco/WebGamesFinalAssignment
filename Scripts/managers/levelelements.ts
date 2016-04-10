@@ -24,7 +24,9 @@ module managers {
 
                 { x: 44, y: 16, width: 0.5, height: 4 , isPlatform: true },
 
-            ]
+            ],
+            
+            background: "FlorestBackground"
         }
 
         public static Level_2: any = {

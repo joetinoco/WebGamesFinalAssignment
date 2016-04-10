@@ -3,7 +3,7 @@ module objects {
         bodyDef: Box2D.Dynamics.b2BodyDef;
         fixDef: Box2D.Dynamics.b2FixtureDef;
         fixDefShape: Box2D.Collision.Shapes.b2PolygonShape;
-        view: createjs.Shape;
+        view: createjs.Container;
         body;
         x: number;
         y: number;
@@ -49,25 +49,26 @@ module objects {
             position = this.body.GetPosition();
 
             // Creates a new Shape object
-            this.view = new createjs.Shape();
+            this.view = new createjs.Container();
             this.view.regX = this.width * config.Screen.SCALE;
             this.view.regY = this.height * config.Screen.SCALE;
 
             // TODO: It appears this polygon overlaps everything in the stage
             // so I set the alpha to 0.3 to make the exit sign visible
-            this.view.graphics.beginFill("rgba(0,255,0,0.3)")
+            var door = new createjs.Shape();
+            door.graphics.beginFill("rgba(0,255,0,0.3)")
                 .drawRect(
                 position.x * config.Screen.SCALE,
                 position.y * config.Screen.SCALE,
                 this.width * 2 * config.Screen.SCALE,
                 this.height * 2 * config.Screen.SCALE);
-
+            this.view.addChild(door);
+            
             var doorLabel = new objects.Label(
                 'EXIT', '10px Consolas', "#000000",
-                this.x * config.Screen.SCALE, 
-                (this.y * config.Screen.SCALE) - 20);
-            stage.addChild(doorLabel);
-
+                this.x * config.Screen.SCALE + 25, 
+                (this.y * config.Screen.SCALE) + 30);
+            this.view.addChild(doorLabel);
         }
     }
 } 

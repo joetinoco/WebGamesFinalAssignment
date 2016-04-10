@@ -21,7 +21,8 @@ var managers;
                 { x: 44, y: 12, width: 5, height: 0.5, isPlatform: true },
                 { x: 32, y: 20, width: 15, height: 0.5, isPlatform: true },
                 { x: 44, y: 16, width: 0.5, height: 4, isPlatform: true },
-            ]
+            ],
+            background: "FlorestBackground"
         };
         LevelElements.Level_2 = {
             heroStartPoint: { x: 30, y: 520 },

@@ -12,6 +12,8 @@ var managers;
         { id: "InstructionsBackground", src: "Assets/images/InstructionsBackground.png" },
         { id: "WhiteBackground", src: "Assets/images/WhiteBackground.png" },
         { id: "BlackBackground", src: "Assets/images/BlackBackground.png" },
+        // Florest tiles
+        { id: "FlorestBackground", src: "Assets/images/florest/BG.png" },
         // Sounds
         { id: "pickup", src: "Assets/sounds/coin.mp3" },
         { id: "hurt", src: "Assets/sounds/hurt.mp3" },

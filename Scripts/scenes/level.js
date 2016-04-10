@@ -17,19 +17,23 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Level.prototype.start = function () {
+            var self = this;
+            // add background image to the scene
+            this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult(this._levelElements.background));
+            this.addChild(this._backgroundImage);
             // Add platforms
             this._levelElements.platforms.forEach(function (elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
-                stage.addChild(wall.view);
+                self.addChild(wall.view);
             });
             // Add hero and enemy
             this._hero = new objects.Hero(this._levelElements.heroStartPoint.x, this._levelElements.heroStartPoint.y, false);
-            stage.addChild(this._hero.view);
+            this.addChild(this._hero.view);
             this._enemy = new objects.Hero(this._levelElements.enemyStartPoint.x, this._levelElements.enemyStartPoint.y, true);
-            stage.addChild(this._enemy.view);
+            this.addChild(this._enemy.view);
             // Add exit door
             this._exitDoor = new objects.ExitDoor(this._levelElements.exitDoorLocation.x, this._levelElements.exitDoorLocation.y);
-            stage.addChild(this._exitDoor.view);
+            this.addChild(this._exitDoor.view);
             var fixDef = new box2d.b2FixtureDef;
             fixDef.density = 0.5;
             fixDef.friction = 0.2;
@@ -45,11 +49,11 @@ var scenes;
             this.on('playerWon', this._nextLevel, this);
             // Set scene status
             this._playerLost = false;
+            // add this scene to the global stage container
+            stage.addChild(this);
             // Show score board
             scoreboard.showScoreBoard();
             scoreboard.restartCountdown();
-            // add this scene to the global stage container
-            stage.addChild(this);
         };
         // LEVEL Scene updates here
         Level.prototype.update = function () {
