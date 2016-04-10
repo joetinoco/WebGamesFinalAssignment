@@ -1,67 +1,96 @@
-﻿// module objects {
-//     // Scoreboard Class
-//     export class Scoreboard {
-//         lives: number;
-//         score: number;
-//         highScore: number;
-//         livesValueLabel: objects.Label;
-//         livesLabel: objects.Label;
-//         scoreValueLabel: objects.Label;
-//         livesValueLabelString: string = "";
-//         scoreLabel: objects.Label;
-//         scoreValueLabelString: string = "";
+﻿module objects {
+     // Scoreboard CLASS ++++++++++++++++++++++++++++++++++++++++++++++
+    export class Scoreboard {
+        public lives: number;
+        public score: number;
+        public highScore: number;
+        public countdown: number;
+        
+        private _background: createjs.Shape;
+        
+        private _livesLabel: objects.Label;
+        private _scoreLabel: objects.Label;
+        private _countdownLabel: objects.Label;
+        
+        private _livesValueLabel: objects.Label;
+        private _scoreValueLabel: objects.Label;
+        private _countdownValueLabel: objects.Label;
+        
+        private _countdownInterval: number;
 
-//         constructor() {
-//             this.lives = config.Game.HERO_LIVES;
-//             this.score = 0;
+        constructor() {
+            this.lives = config.Game.HERO_LIVES;
+            this.score = 0;
+            this.countdown = config.Game.LEVEL_COUNTDOWN;
+            
+            this._background = new createjs.Shape();
+            this._background.graphics.beginFill("#352D2B").drawRect(0, 0, config.Screen.WIDTH, 40);
 
-//             this.livesLabel = new objects.Label(config.Screen.WIDTH * 0.10, 0, "lives");
-//             this.livesLabel.regX = 0;
-//             this.livesLabel.regY = 0;
-//             this.livesLabel.fontSize(40);
+            this._livesLabel = new objects.Label( 
+                "LIFES:", "20px Consolas",
+                "#FFF", 100, 20);
+            
+            this._livesValueLabel = new objects.Label( 
+                " ", "20px Consolas",
+                "#FFF", 140, 20);
+            
+            this._scoreLabel = new objects.Label( 
+                "SCORE:", "20px Consolas",
+                "#FFF", 380, 20);
+            
+            this._scoreValueLabel = new objects.Label( 
+                " ", "20px Consolas",
+                "#FFF", 440, 20);
+            
+            this._countdownLabel = new objects.Label( 
+                "TIME:", "20px Consolas",
+                "#FFF", 620, 20);
+            
+            this._countdownValueLabel = new objects.Label( 
+                " ", "20px Consolas",
+                "#FFF", 660, 20);
 
-//             this.livesValueLabel = new objects.Label(config.Screen.WIDTH * 0.10, 40, this.lives.toString());
-//             this.livesValueLabel.regX = 0;
-//             this.livesValueLabel.regY = 0;
-//             this.livesValueLabel.fontSize(40);
+            this.update();
+        }
 
-//             this.scoreLabel = new objects.Label(config.Screen.WIDTH * 0.60, 0, "score");
-//             this.scoreLabel.regX = 0;
-//             this.scoreLabel.regY = 0;
-//             this.scoreLabel.fontSize(40);
+         public showScoreBoard(): void {
+            stage.addChild(this._background);
+            stage.addChild(this._livesLabel);
+            stage.addChild(this._livesValueLabel);
+            stage.addChild(this._scoreLabel);
+            stage.addChild(this._scoreValueLabel);
+            stage.addChild(this._countdownLabel);
+            stage.addChild(this._countdownValueLabel);
+        }
 
-//             this.scoreValueLabel = new objects.Label(config.Screen.WIDTH * 0.60, 40, this.score.toString());
-//             this.scoreValueLabel.regX = 0;
-//             this.scoreValueLabel.regY = 0;
-//             this.scoreValueLabel.fontSize(40);
+        public update(): void {
+            this._livesValueLabel.text = "" + this.lives;
+            this._scoreValueLabel.text = "" + this.score;
+            this._countdownValueLabel.text = "" + this.countdown;
+        }
 
-
-//             this.update();
-
-//             this.showScoreBoard();
-//         }
-
-//         showScoreBoard() {
-//             stage.addChild(this.livesLabel);
-//             stage.addChild(this.livesValueLabel);
-//             stage.addChild(this.scoreLabel);
-//             stage.addChild(this.scoreValueLabel);
-//         }
-
-
-//         update() {
-//             this.livesValueLabelString = this.lives.toString();
-//             this.livesValueLabel.text = this.livesValueLabelString;
-
-//             this.scoreValueLabelString = this.score.toString();
-//             this.scoreValueLabel.text = this.scoreValueLabelString;
-//         }
-
-//         destroy() {
-//             stage.removeChild(this.livesLabel);
-//             stage.removeChild(this.livesValueLabel);
-//             stage.removeChild(this.scoreLabel);
-//             stage.removeChild(this.scoreValueLabel);
-//         }
-//     }
-// } 
+         public destroy(): void {
+            stage.removeChild(this._background);
+            stage.removeChild(this._livesLabel);
+            stage.removeChild(this._livesValueLabel);
+            stage.removeChild(this._scoreLabel);
+            stage.removeChild(this._scoreValueLabel);
+            stage.removeChild(this._countdownLabel);
+            stage.removeChild(this._countdownValueLabel);
+        }
+        
+        public restartCountdown(): void {
+            this.countdown = config.Game.LEVEL_COUNTDOWN;
+            this._countdownInterval = this._countdownInterval? this._countdownInterval:
+                setInterval(this._updateInterval, 1000, this);
+        }
+        
+        public stopCountdown(): void {
+            clearInterval(this._countdownInterval);
+        }
+        
+        private _updateInterval(self): void {
+            self.countdown--;
+        }
+    }
+} 

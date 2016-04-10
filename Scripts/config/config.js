@@ -11,7 +11,7 @@ var config;
         Scene.LEVEL_2 = 4;
         Scene.LEVEL_3 = 5;
         return Scene;
-    }());
+    })();
     config.Scene = Scene;
     // Screen Constants
     var Screen = (function () {
@@ -23,7 +23,7 @@ var config;
         Screen.CENTER_Y = 300;
         Screen.SCALE = 12.5;
         return Screen;
-    }());
+    })();
     config.Screen = Screen;
     // Game Constants
     var Game = (function () {
@@ -31,12 +31,12 @@ var config;
         }
         Game.FPS = 60;
         Game.HERO_LIVES = 3;
+        Game.LEVEL_COUNTDOWN = 60;
         return Game;
-    }());
+    })();
     config.Game = Game;
     // Canvases
     config.ARCADE_CANVAS = document.getElementById("arcade");
     config.DEBUG_CANVAS = document.getElementById("debug");
 })(config || (config = {}));
-
 //# sourceMappingURL=config.js.map

@@ -23,6 +23,7 @@ module config {
     export class Game {
         public static FPS: number = 60;
         public static HERO_LIVES: number = 3;
+        public static LEVEL_COUNTDOWN: number = 60;
     }
     
     // Canvases
