@@ -36,6 +36,14 @@ module scenes {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
                 self.addChild(wall.view);
             });
+            
+            // Add images
+            this._levelElements.images.forEach(function(elem) {
+                var image = new createjs.Bitmap(managers.Assets.loader.getResult(elem.asset));
+                image.x = elem.x;
+                image.y = elem.y;
+                self.addChild(image);
+            });
 
             // Add hero and enemy
             this._hero = new objects.Hero(

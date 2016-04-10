@@ -26,7 +26,52 @@ module managers {
 
             ],
             
-            background: "FlorestBackground"
+            background: "FlorestBackground",
+            images: [
+                
+                // obstacle 1
+                {asset: "FlorestTile1", x: 184,   y: 474},
+                {asset: "FlorestTile2", x: 218,   y: 474},
+                {asset: "FlorestTile3", x: 252,   y: 474},
+                {asset: "FlorestTile4", x: 184,   y: 538},
+                {asset: "FlorestTile5", x: 218,   y: 538},
+                {asset: "FlorestTile6", x: 252,   y: 538},
+                
+                // obstacle 2
+                {asset: "FlorestTile1", x: 484,   y: 474},
+                {asset: "FlorestTile2", x: 518,   y: 474},
+                {asset: "FlorestTile3", x: 552,   y: 474},
+                {asset: "FlorestTile4", x: 484,   y: 538},
+                {asset: "FlorestTile5", x: 518,   y: 538},
+                {asset: "FlorestTile6", x: 552,   y: 538},
+                
+                {asset: "FlorestTile14", x: 12,   y: 305},
+                {asset: "FlorestTile15", x: 76,   y: 305},
+                
+                {asset: "FlorestTile13", x: 660,   y: 305},
+                {asset: "FlorestTile14", x: 724,   y: 305},
+                
+                // Floor
+                {asset: "FlorestTile2", x: 0,   y: 580},
+                {asset: "FlorestTile2", x: 64,  y: 580},
+                {asset: "FlorestTile2", x: 128, y: 580},
+                {asset: "FlorestTile2", x: 192, y: 580},
+                {asset: "FlorestTile2", x: 256, y: 580},
+                {asset: "FlorestTile2", x: 320, y: 580},
+                {asset: "FlorestTile2", x: 384, y: 580},
+                {asset: "FlorestTile2", x: 448, y: 580},
+                {asset: "FlorestTile2", x: 512, y: 580},
+                {asset: "FlorestTile2", x: 576, y: 580},
+                {asset: "FlorestTile2", x: 640, y: 580},
+                {asset: "FlorestTile2", x: 704, y: 580},
+                {asset: "FlorestTile2", x: 768, y: 580},
+                
+                // cosmetic elements
+                {asset: "FlorestSign2", x: 0,  y: 540},
+                {asset: "FlorestBush4", x: 64,  y: 555},
+                {asset: "FlorestBush2", x: 320,  y: 542},
+                {asset: "FlorestTree2", x: 680,  y: 430},
+            ]            
         }
 
         public static Level_2: any = {
