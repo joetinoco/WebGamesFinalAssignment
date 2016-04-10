@@ -11,7 +11,7 @@ var managers;
                 { x: 0, y: 48, width: 64, height: 1, isPlatform: true },
                 { x: 0, y: 0, width: 1, height: 96, isPlatform: false },
                 { x: 64, y: 0, width: 1, height: 96, isPlatform: false },
-                { x: 0, y: 0, width: 64, height: 1, isPlatform: false },
+                { x: 0, y: -1, width: 64, height: 1, isPlatform: false },
                 // Platforms
                 { x: 20, y: 43, width: 5, height: 5, isPlatform: true },
                 { x: 44, y: 43, width: 5, height: 5, isPlatform: true },
@@ -45,8 +45,7 @@ var managers;
             ]
         };
         return LevelElements;
-    }());
+    })();
     managers.LevelElements = LevelElements;
 })(managers || (managers = {}));
-
 //# sourceMappingURL=levelelements.js.map

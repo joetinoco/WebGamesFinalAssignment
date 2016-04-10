@@ -30,7 +30,6 @@ var scenes;
             // Add exit door
             this._exitDoor = new objects.ExitDoor(this._levelElements.exitDoorLocation.x, this._levelElements.exitDoorLocation.y);
             stage.addChild(this._exitDoor.view);
-            //  scoreboard = new objects.Scoreboard();
             var fixDef = new box2d.b2FixtureDef;
             fixDef.density = 0.5;
             fixDef.friction = 0.2;
@@ -46,18 +45,33 @@ var scenes;
             this.on('playerWon', this._nextLevel, this);
             // Set scene status
             this._playerLost = false;
+            // Show score board
+            scoreboard.showScoreBoard();
+            scoreboard.restartCountdown();
             // add this scene to the global stage container
             stage.addChild(this);
         };
         // LEVEL Scene updates here
         Level.prototype.update = function () {
+            if (scoreboard.countdown == 0)
+                this._playerLost = true;
             this._hero.update(this._playerLost);
             this._enemy.update(this._playerLost);
-            //   //  scoreboard.update();
+            this._checkGameStatus();
+            scoreboard.update();
             reality.update();
-            // Reset lost life flag
-            if (this._playerLost)
+        };
+        Level.prototype._checkGameStatus = function () {
+            if (this._playerLost) {
+                scoreboard.lives--;
+                scoreboard.restartCountdown();
+                // Reset lost life flag
                 this._playerLost = false;
+            }
+            if (scoreboard.lives < 0) {
+                scene = config.Scene.GAME_OVER;
+                changeScene();
+            }
         };
         // Reset the level
         Level.prototype._reset = function () {
@@ -65,6 +79,8 @@ var scenes;
         };
         // Switch to the next level
         Level.prototype._nextLevel = function () {
+            scoreboard.stopCountdown();
+            scoreboard.score += scoreboard.countdown;
             scene += 1;
             changeScene();
         };
@@ -94,8 +110,7 @@ var scenes;
             }
         };
         return Level;
-    }(objects.Scene));
+    })(objects.Scene);
     scenes.Level = Level;
 })(scenes || (scenes = {}));
-
 //# sourceMappingURL=level.js.map

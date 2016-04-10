@@ -10,7 +10,6 @@ module scenes {
         private _hero: objects.Hero;
         private _enemy: objects.Hero;
         private _exitDoor: objects.ExitDoor;
-        //private _scoreboard: objects.Scoreboard;
 
         // Level status flags
         private _playerLost: boolean;
@@ -52,8 +51,6 @@ module scenes {
                 this._levelElements.exitDoorLocation.y)
             stage.addChild(this._exitDoor.view);
 
-            //  scoreboard = new objects.Scoreboard();
-
             var fixDef = new box2d.b2FixtureDef;
             fixDef.density = 0.5;
             fixDef.friction = 0.2;
@@ -73,6 +70,10 @@ module scenes {
 
             // Set scene status
             this._playerLost = false;
+            
+            // Show score board
+            scoreboard.showScoreBoard();
+            scoreboard.restartCountdown();
 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -80,15 +81,27 @@ module scenes {
 
         // LEVEL Scene updates here
         public update(): void {
+            if(scoreboard.countdown == 0) this._playerLost = true;
+
             this._hero.update(this._playerLost);
             this._enemy.update(this._playerLost);
-
-            //   //  scoreboard.update();
-
+            this._checkGameStatus();
+            
+            scoreboard.update();
             reality.update();
-
-            // Reset lost life flag
-            if (this._playerLost) this._playerLost = false;
+        }
+        
+        private _checkGameStatus(): void { 
+            if(this._playerLost){
+                scoreboard.lives--;
+                scoreboard.restartCountdown();
+                // Reset lost life flag
+                this._playerLost = false;
+            }
+            if(scoreboard.lives < 0){
+                scene = config.Scene.GAME_OVER;
+                changeScene();
+            }
         }
 
         // Reset the level
@@ -98,6 +111,9 @@ module scenes {
         
         // Switch to the next level
         private _nextLevel(): void {
+            scoreboard.stopCountdown();
+            scoreboard.score += scoreboard.countdown;
+            
             scene += 1;
             changeScene();
         }
@@ -117,7 +133,7 @@ module scenes {
                 // Treat hero collisions
                 if (collided.indexOf('hero') > -1) {
                     if (collided.indexOf('enemy') > -1) {
-                        console.log('You touched the enemy. Lose a life');
+                        console.log('You touched the enemy. Lose a life'); 
                         currentScene.dispatchEvent('playerLost');
                     } else if (collided.indexOf('exit door') > -1) {
                         console.log('Level complete! You win!');

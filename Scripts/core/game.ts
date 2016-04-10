@@ -20,6 +20,8 @@ var level2: scenes.Level;
 var world: Box2D.Dynamics.b2World;
 var reality: objects.Reality;
 
+var scoreboard: objects.Scoreboard;
+
 
 // var assetData:objects.Asset[] = [
 //     {id: "BackButton", src:"../../Assets/images/BackButton.png"},
@@ -67,6 +69,9 @@ function init(): void {
 
     // sets up our stats counting workflow
     setupStats();
+    
+    // create score board
+    scoreboard = new objects.Scoreboard();
 
     // set initial scene (or skip it depending on the URL)
     if (location.search) scene = Number(location.search[1]);

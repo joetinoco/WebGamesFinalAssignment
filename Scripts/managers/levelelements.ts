@@ -8,7 +8,7 @@ module managers {
                 { x: 0,  y: 48, width: 64, height:  1, isPlatform: true }, // Floor
                 { x: 0,  y: 0,  width: 1,  height: 96, isPlatform: false }, // Left wall
                 { x: 64, y: 0,  width: 1,  height: 96, isPlatform: false }, // Right wall
-                { x:  0, y:  0, width: 64, height:  1, isPlatform: false }, // Ceiling
+                { x:  0, y:  -1, width: 64, height:  1, isPlatform: false }, // Ceiling
 
                 // Platforms
                 { x: 20, y: 43, width: 5, height: 5 , isPlatform: true },

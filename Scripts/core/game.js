@@ -15,6 +15,7 @@ var level2;
 // Physics Variables # Should be here? (global)
 var world;
 var reality;
+var scoreboard;
 // var assetData:objects.Asset[] = [
 //     {id: "BackButton", src:"../../Assets/images/BackButton.png"},
 //     {id: "Nextbutton", src:"../../Assets/images/Nextbutton.png"},
@@ -52,6 +53,8 @@ function init() {
     createjs.Ticker.on("tick", gameLoop, this);
     // sets up our stats counting workflow
     setupStats();
+    // create score board
+    scoreboard = new objects.Scoreboard();
     // set initial scene (or skip it depending on the URL)
     if (location.search)
         scene = Number(location.search[1]);
@@ -126,5 +129,4 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
-
 //# sourceMappingURL=game.js.map
