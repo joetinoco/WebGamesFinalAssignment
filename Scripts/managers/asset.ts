@@ -22,6 +22,8 @@
         { id: "FlorestStone", src: "Assets/images/florest/Stone.png" },
         { id: "FlorestSign1", src: "Assets/images/florest/Sign_1.png" },
         { id: "FlorestSign2", src: "Assets/images/florest/Sign_2.png" },
+        { id: "FlorestMushroom1", src: "Assets/images/florest/Mushroom_1.png" },
+        { id: "FlorestMushroom2", src: "Assets/images/florest/Mushroom_2.png" },
         { id: "FlorestTree1", src: "Assets/images/florest/Tree_1.png" },
         { id: "FlorestTree2", src: "Assets/images/florest/Tree_2.png" },
         { id: "FlorestTree3", src: "Assets/images/florest/Tree_3.png" },

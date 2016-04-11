@@ -31,26 +31,48 @@ module managers {
             images: [
                 
                 // obstacle 1
-                {asset: "FlorestTile1", x: 184,   y: 474},
-                {asset: "FlorestTile2", x: 218,   y: 474},
-                {asset: "FlorestTile3", x: 252,   y: 474},
-                {asset: "FlorestTile4", x: 184,   y: 538},
-                {asset: "FlorestTile5", x: 218,   y: 538},
-                {asset: "FlorestTile6", x: 252,   y: 538},
+                {asset: "FlorestTile1", x: 184,   y: 470},
+                {asset: "FlorestTile2", x: 218,   y: 470},
+                {asset: "FlorestTile3", x: 252,   y: 470},
+                {asset: "FlorestTile4", x: 184,   y: 534},
+                {asset: "FlorestTile5", x: 218,   y: 534},
+                {asset: "FlorestTile6", x: 252,   y: 534},
                 
                 // obstacle 2
-                {asset: "FlorestTile1", x: 484,   y: 474},
-                {asset: "FlorestTile2", x: 518,   y: 474},
-                {asset: "FlorestTile3", x: 552,   y: 474},
-                {asset: "FlorestTile4", x: 484,   y: 538},
-                {asset: "FlorestTile5", x: 518,   y: 538},
-                {asset: "FlorestTile6", x: 552,   y: 538},
+                {asset: "FlorestTile1", x: 484,   y: 470},
+                {asset: "FlorestTile2", x: 518,   y: 470},
+                {asset: "FlorestTile3", x: 552,   y: 470},
+                {asset: "FlorestTile4", x: 484,   y: 534},
+                {asset: "FlorestTile5", x: 518,   y: 534},
+                {asset: "FlorestTile6", x: 552,   y: 534},
                 
-                {asset: "FlorestTile14", x: 12,   y: 305},
-                {asset: "FlorestTile15", x: 76,   y: 305},
+                // left
+                {asset: "FlorestTile14", x: 12,   y: 300},
+                {asset: "FlorestTile15", x: 76,   y: 300},
                 
-                {asset: "FlorestTile13", x: 660,   y: 305},
-                {asset: "FlorestTile14", x: 724,   y: 305},
+                // right
+                {asset: "FlorestTile13", x: 660,   y: 300},
+                {asset: "FlorestTile14", x: 724,   y: 300},
+                
+                // top left
+                {asset: "FlorestTile13", x: 186,   y: 140},
+                {asset: "FlorestTile15", x: 250,   y: 140},
+                
+                // top right
+                {asset: "FlorestTile13", x: 486,   y: 140},
+                {asset: "FlorestTile15", x: 550,   y: 140},
+                
+                // top floor
+                {asset: "FlorestTile13", x: 210,   y: 240},
+                {asset: "FlorestTile14", x: 274,   y: 240},
+                {asset: "FlorestTile14", x: 338,   y: 240},
+                {asset: "FlorestTile14", x: 402,   y: 240},
+                {asset: "FlorestTile14", x: 466,   y: 240},
+                {asset: "FlorestTile15", x: 530,   y: 240},
+                
+                // box
+                {asset: "FlorestCrate", x: 535,   y: 205},
+                {asset: "FlorestCrate", x: 530,   y: 160},
                 
                 // Floor
                 {asset: "FlorestTile2", x: 0,   y: 580},
@@ -72,6 +94,25 @@ module managers {
                 {asset: "FlorestBush4", x: 64,  y: 555},
                 {asset: "FlorestBush2", x: 320,  y: 542},
                 {asset: "FlorestTree2", x: 680,  y: 430},
+                {asset: "FlorestStone", x: 500,  y: 445},
+                
+                {asset: "FlorestStone", x: 200,  y: 445},
+                {asset: "FlorestBush3", x: 220,  y: 442},
+                
+                {asset: "FlorestBush2", x: 380,  y: 200},
+                {asset: "FlorestStone", x: 390,  y: 215},
+                {asset: "FlorestBush3", x: 360,  y: 212},
+                
+                {asset: "FlorestTree1", x: 250,  y: 120},
+                
+                {asset: "FlorestTree2", x: -20,  y: 150},
+                {asset: "FlorestBush3", x: 10,  y: 272},
+                {asset: "FlorestStone", x: 50,  y: 275},
+                
+                {asset: "FlorestTree1", x: 720,  y: 280},
+                {asset: "FlorestMushroom2", x: 700,  y: 275},
+                
+                
             ]            
         }
 
