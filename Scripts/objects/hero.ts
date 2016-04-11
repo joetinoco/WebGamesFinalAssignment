@@ -27,7 +27,11 @@
             this.initialX = x;
             this.initialY = y;
 
-            this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
+            if (!this.mirrored){
+                this.view = new createjs.Sprite(managers.Assets.heroAtlas, "heroIdle");
+            } else {
+                this.view = new createjs.Sprite(managers.Assets.enemyAtlas, "heroIdle");
+            }
 
             this.width = this.view.getBounds().width / config.Screen.SCALE;
             this.height = this.view.getBounds().height / config.Screen.SCALE;
@@ -52,8 +56,10 @@
 
             // Define the shape, which will be a Polygon
             this.fixDefShape = new box2d.b2CircleShape();
-            this.fixDefShape.SetRadius(this.width * 0.5);
-            //this.fixDefShape.SetAsBox(this.width * 0.65, this.height * 0.5);
+            this.fixDefShape.SetRadius((64 / config.Screen.SCALE) * 0.5);
+            
+            // this.fixDef.shape = new box2d.b2PolygonShape();
+            // this.fixDef.shape.SetAsBox(this.width * 0.65, this.height * 0.5);
 
             this.fixDef.shape = this.fixDefShape;
         }
@@ -242,13 +248,13 @@
                     }
 
                     // If no keys are pressed, decelerate the hero naturally
-                } else if (finalVelocity > 0.015) {
+                } else if (finalVelocity > 0.3) {
                     finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
 
                     // Come to a stop
                 } else {
+                    if (finalVelocity > 0) this.view.gotoAndPlay("heroIdle");
                     finalVelocity = 0;
-                    this.view.gotoAndPlay("heroIdle");
                 }
 
                 // Set a new vector point for the hero
