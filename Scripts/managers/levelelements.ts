@@ -139,8 +139,75 @@ module managers {
                 { x: 32.5, y: -30, width: 0.5, height:  40 , isPlatform: false },
                 { x:  37.5, y:   14, width: 0.5, height:   4 , isPlatform: false }
             ],
-            background: "FlorestBackground",
-            images: []
+            background: "WinterBackground",
+            images: [
+                
+                // Floor
+                {asset: "WinterTile2", x: 0,   y: 580},
+                {asset: "WinterTile2", x: 64,  y: 580},
+                {asset: "WinterTile2", x: 128, y: 580},
+                {asset: "WinterTile2", x: 192, y: 580},
+                {asset: "WinterTile2", x: 256, y: 580},
+                {asset: "WinterTile2", x: 320, y: 580},
+                {asset: "WinterTile2", x: 384, y: 580},
+                {asset: "WinterTile2", x: 448, y: 580},
+                {asset: "WinterTile2", x: 512, y: 580},
+                {asset: "WinterTile2", x: 576, y: 580},
+                {asset: "WinterTile2", x: 640, y: 580},
+                {asset: "WinterTile2", x: 704, y: 580},
+                {asset: "WinterTile2", x: 768, y: 580},
+                
+                // big block
+                {asset: "WinterTile1", x: 297,   y: 325},
+                {asset: "WinterTile2", x: 361,   y: 325},
+                {asset: "WinterTile2", x: 425,   y: 325},
+                {asset: "WinterTile3", x: 489,   y: 325},
+                {asset: "WinterTile4", x: 297,   y: 389},
+                {asset: "WinterTile5", x: 361,   y: 389},
+                {asset: "WinterTile5", x: 425,   y: 389},
+                {asset: "WinterTile6", x: 489,   y: 389},
+                {asset: "WinterTile4", x: 297,   y: 453},
+                {asset: "WinterTile5", x: 361,   y: 453},
+                {asset: "WinterTile5", x: 425,   y: 453},
+                {asset: "WinterTile6", x: 489,   y: 453},
+                {asset: "WinterTile4", x: 297,   y: 517},
+                {asset: "WinterTile5", x: 361,   y: 517},
+                {asset: "WinterTile5", x: 425,   y: 517},
+                {asset: "WinterTile6", x: 489,   y: 517},
+                {asset: "WinterTile4", x: 297,   y: 581},
+                {asset: "WinterTile5", x: 361,   y: 581},
+                {asset: "WinterTile5", x: 425,   y: 581},
+                {asset: "WinterTile6", x: 489,   y: 581},
+                
+                // step 1
+                {asset: "WinterTile14", x: 88,   y: 465},
+                {asset: "WinterTile16", x: 148,   y: 465},
+                
+                {asset: "WinterTile15", x: 12,   y: 214},
+                {asset: "WinterTile15", x: 54,   y: 214},
+                {asset: "WinterTile15", x: 88,   y: 214},
+                {asset: "WinterTile16", x: 150,   y: 214},
+                
+                {asset: "WinterTile14", x: 724,   y: 114},
+                
+                {asset: "WinterTile14", x: 574,   y: 114},
+                {asset: "WinterTile16", x: 588,   y: 114},
+                
+                {asset: "WinterTile1", x: 380,   y: 114},
+                {asset: "WinterTile3", x: 416,   y: 114},
+                {asset: "WinterTile13", x: 416,   y: 168},
+                {asset: "WinterCrate", x: 385,   y: 30},
+                {asset: "WinterCrate", x: 380,   y: 75},
+                
+                
+                // cosmetic elements
+                {asset: "WinterSign2", x: 0,  y: 540},
+                
+                {asset: "WinterTree1", x: 12,  y: 100},
+                
+                {asset: "WinterStone", x: 320,  y: 285},
+                {asset: "WinterStone", x: 660,  y: 540},
+            ]
         }
     }
 }
