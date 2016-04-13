@@ -33,7 +33,7 @@ var objects;
         Hero.prototype.createFixtureDefinition = function () {
             this.fixDef = new box2d.b2FixtureDef();
             this.fixDef.density = 1.0;
-            this.fixDef.friction = 0.01; // Add some Resistance
+            this.fixDef.friction = 0.0; // Add some Resistance
             this.fixDef.restitution = 0.2; // Add a little bounce
             // Define the shape, which will be a Polygon
             this.fixDefShape = new box2d.b2CircleShape();
@@ -145,7 +145,7 @@ var objects;
             return createjs.Ticker.getTime() - this.lastJumpTime > this.JUMP_TIMEOUT;
         };
         // Fires on each iteration of our Game Loop
-        Hero.prototype.update = function (playerLost) {
+        Hero.prototype.update = function (playerLost, frictionFactor) {
             // Return if game currently paused
             var finalVelocity, impulse, position, velocity, direction;
             /*     if (e.paused) {
@@ -207,7 +207,7 @@ var objects;
                     }
                 }
                 else if (finalVelocity > 0.3) {
-                    finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
+                    finalVelocity *= 0.99 - (frictionFactor * 0.08); // The lower this is the faster our hero will slow down
                 }
                 else {
                     if (finalVelocity > 0)

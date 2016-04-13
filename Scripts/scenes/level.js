@@ -27,6 +27,7 @@ var scenes;
             // Add SFX
             this._lostLife = new objects.Sound('loselife');
             // Add platforms
+            this._platformFriction = this._levelElements.defaultFriction;
             this._levelElements.platforms.forEach(function (elem) {
                 var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
                 self.addChild(wall.view);
@@ -71,8 +72,8 @@ var scenes;
         Level.prototype.update = function () {
             if (scoreboard.countdown == 0)
                 this._playerLost = true;
-            this._hero.update(this._playerLost);
-            this._enemy.update(this._playerLost);
+            this._hero.update(this._playerLost, this._platformFriction);
+            this._enemy.update(this._playerLost, this._platformFriction);
             this._checkGameStatus();
             scoreboard.update();
             reality.update();

@@ -13,6 +13,7 @@ module scenes {
 
         // Level status flags
         private _playerLost: boolean;
+        private _platformFriction: number;
         
         // Level music & sounds
         private _levelMusic: objects.Sound;
@@ -44,8 +45,11 @@ module scenes {
             this._lostLife = new objects.Sound('loselife');
 
             // Add platforms
+            this._platformFriction = this._levelElements.defaultFriction; 
             this._levelElements.platforms.forEach(function(elem) {
-                var wall = new objects.Platform(elem.x, elem.y, elem.width, elem.height, elem.isPlatform);
+                var wall = new objects.Platform(elem.x, elem.y, 
+                    elem.width, elem.height, 
+                    elem.isPlatform);
                 self.addChild(wall.view);
             });
             
@@ -108,8 +112,8 @@ module scenes {
         public update(): void {
             if(scoreboard.countdown == 0) this._playerLost = true;
 
-            this._hero.update(this._playerLost);
-            this._enemy.update(this._playerLost);
+            this._hero.update(this._playerLost, this._platformFriction);
+            this._enemy.update(this._playerLost, this._platformFriction);
             this._checkGameStatus();
             
             scoreboard.update();

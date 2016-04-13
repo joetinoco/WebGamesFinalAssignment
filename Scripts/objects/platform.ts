@@ -10,13 +10,13 @@
         width: number;
         height: number;
         isPlatform: boolean;
+        friction: number;
         constructor(x, y, width, height, isPlatform) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
-            this.isPlatform = isPlatform; 
-
+            this.isPlatform = isPlatform;
             this.createFixtureDefinition();
             this.createBodyDefinition();
             this.createPlatform();

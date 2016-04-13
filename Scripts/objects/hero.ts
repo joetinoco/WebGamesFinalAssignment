@@ -51,7 +51,7 @@
         createFixtureDefinition() {
             this.fixDef = new box2d.b2FixtureDef();
             this.fixDef.density = 1.0;
-            this.fixDef.friction = 0.01; // Add some Resistance
+            this.fixDef.friction = 0.0; // Add some Resistance
             this.fixDef.restitution = 0.2; // Add a little bounce
 
             // Define the shape, which will be a Polygon
@@ -179,7 +179,7 @@
         }
 
         // Fires on each iteration of our Game Loop
-        update(playerLost: boolean) {
+        update(playerLost: boolean, frictionFactor: number) {
             // Return if game currently paused
             var finalVelocity, impulse, position, velocity, direction;
             /*     if (e.paused) {
@@ -247,11 +247,12 @@
                         }
                     }
 
-                    // If no keys are pressed, decelerate the hero naturally
+                // If no keys are pressed, decelerate the hero
+                // according to the platform's 'slipperiness'
                 } else if (finalVelocity > 0.3) {
-                    finalVelocity *= 0.96; // The lower this is the faster our hero will slow down
+                    finalVelocity *= 0.99 - (frictionFactor * 0.08); // The lower this is the faster our hero will slow down
 
-                    // Come to a stop
+                // Come to a stop
                 } else {
                     if (finalVelocity > 0) this.view.gotoAndPlay("heroIdle");
                     finalVelocity = 0;

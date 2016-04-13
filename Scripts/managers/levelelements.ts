@@ -5,6 +5,7 @@ module managers {
             enemyStartPoint: {x: 770, y: 520},
             exitDoorLocation: {x: 36, y: 43},
             music: 'level1',
+            defaultFriction: 0.5,
             platforms: [
                 { x: 0,  y: 48, width: 64, height:  1, isPlatform: true }, // Floor
                 { x: 0,  y: 0,  width: 1,  height: 96, isPlatform: false }, // Left wall
@@ -121,6 +122,7 @@ module managers {
             enemyStartPoint: { x: 770, y: 50 },
             exitDoorLocation: { x: 61, y: 43 },
             music: 'level2',
+            defaultFriction: 0,
             platforms: [
                 { x:  0, y: 48, width: 64, height: 1  , isPlatform: true }, // Floor
                 { x:  0, y:  0, width:  1, height: 96 , isPlatform: false }, // Left wall
