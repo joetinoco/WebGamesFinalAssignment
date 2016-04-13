@@ -14,11 +14,21 @@
         mirrored: boolean; // Reverse movements
         MAX_SPEED: number = 30;
         JUMP_TIMEOUT: number = 200 // 0.2 second
-        JUMP_HEIGHT: number = 70 * config.Screen.SCALE;
+        JUMP_HEIGHT: number;
         constructor(x: number, y: number, mirrored: boolean) {
             // Sets last jump time to zero, to allow
             // for jumping immediately
             this.lastJumpTime = 0;
+            
+            // Set jump height, proportional to the world's current gravity
+            if (world.GetGravity().y == 50){
+                this.JUMP_HEIGHT = 70 * config.Screen.SCALE;
+            } else {
+                this.JUMP_HEIGHT = 17 * config.Screen.SCALE;
+            }
+            console.log('JUMP HEIGHT ' + this.JUMP_HEIGHT);
+            console.log('GRRAVITY ' + world.GetGravity().y);
+                        
 
             // Set movement type for hero or enemy
             this.mirrored = mirrored;

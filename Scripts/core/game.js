@@ -107,6 +107,16 @@ function changeScene() {
             currentScene = level2;
             console.log("Starting LEVEL_2 Scene");
             break;
+        case config.Scene.LEVEL_3:
+            stage.removeAllChildren();
+            if (currentScene)
+                currentScene.destroy();
+            // Reset reality ¯\_(ツ)_/¯
+            reality = new objects.Reality();
+            level2 = new scenes.Level(managers.LevelElements.Level_3);
+            currentScene = level2;
+            console.log("Starting LEVEL_3 Scene");
+            break;
         case config.Scene.GAME_OVER:
             // show the game OVER scene
             stage.removeAllChildren();

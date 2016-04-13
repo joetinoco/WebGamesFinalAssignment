@@ -33,6 +33,9 @@ module scenes {
         public start(): void {
             var self = this;
             
+            // Set scene gravity
+            world.SetGravity(new box2d.b2Vec2(0,this._levelElements.gravity));
+            
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult(this._levelElements.background));
             this.addChild(this._backgroundImage);

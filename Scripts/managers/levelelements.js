@@ -9,6 +9,7 @@ var managers;
             exitDoorLocation: { x: 36, y: 43 },
             music: 'level1',
             defaultFriction: 0.5,
+            gravity: 50,
             platforms: [
                 { x: 0, y: 48, width: 64, height: 1, isPlatform: true },
                 { x: 0, y: 0, width: 1, height: 96, isPlatform: false },
@@ -101,6 +102,7 @@ var managers;
             exitDoorLocation: { x: 61, y: 43 },
             music: 'level2',
             defaultFriction: 0,
+            gravity: 50,
             platforms: [
                 { x: 0, y: 48, width: 64, height: 1, isPlatform: true },
                 { x: 0, y: 0, width: 1, height: 96, isPlatform: false },
@@ -174,6 +176,106 @@ var managers;
                 { asset: "WinterTree1", x: 12, y: 100 },
                 { asset: "WinterStone", x: 320, y: 285 },
                 { asset: "WinterStone", x: 660, y: 540 },
+            ]
+        };
+        LevelElements.Level_3 = {
+            heroStartPoint: { x: 30, y: 320 },
+            enemyStartPoint: { x: 770, y: 320 },
+            exitDoorLocation: { x: 32, y: 12 },
+            music: 'level3',
+            defaultFriction: 0.5,
+            gravity: 3,
+            platforms: [
+                { x: 0, y: 48, width: 64, height: 1, isPlatform: true },
+                { x: 0, y: 0, width: 1, height: 96, isPlatform: true },
+                { x: 64, y: 0, width: 1, height: 96, isPlatform: true },
+                { x: 0, y: 3, width: 64, height: 1, isPlatform: false },
+                // Starting platforms
+                { x: 0, y: 35, width: 12, height: 0.5, isPlatform: true },
+                { x: 64, y: 35, width: 12, height: 0.5, isPlatform: true },
+                // Left barrier
+                { x: 12, y: 12, width: 0.5, height: 8, isPlatform: true },
+                // Door platform
+                { x: 32, y: 17, width: 2, height: 0.5, isPlatform: true },
+            ],
+            background: "SciFiBackground",
+            images: [
+                // Left wall
+                { asset: "SciFiTile5", x: -51, y: 51 },
+                { asset: "SciFiTile5", x: -51, y: 115 },
+                { asset: "SciFiTile5", x: -51, y: 179 },
+                { asset: "SciFiTile5", x: -51, y: 243 },
+                { asset: "SciFiTile5", x: -51, y: 307 },
+                { asset: "SciFiTile5", x: -51, y: 371 },
+                { asset: "SciFiTile5", x: -51, y: 435 },
+                { asset: "SciFiTile5", x: -51, y: 499 },
+                { asset: "SciFiTile5", x: -51, y: 563 },
+                // Right wall
+                { asset: "SciFiTile5", x: 787, y: 51 },
+                { asset: "SciFiTile5", x: 787, y: 115 },
+                { asset: "SciFiTile5", x: 787, y: 179 },
+                { asset: "SciFiTile5", x: 787, y: 243 },
+                { asset: "SciFiTile5", x: 787, y: 307 },
+                { asset: "SciFiTile5", x: 787, y: 371 },
+                { asset: "SciFiTile5", x: 787, y: 435 },
+                { asset: "SciFiTile5", x: 787, y: 499 },
+                { asset: "SciFiTile5", x: 787, y: 563 },
+                // Floor
+                { asset: "SciFiBGTile7", x: 12, y: 540 },
+                { asset: "SciFiBGTile7", x: 76, y: 540 },
+                { asset: "SciFiBGTile7", x: 140, y: 540 },
+                { asset: "SciFiBGTile7", x: 204, y: 540 },
+                { asset: "SciFiBGTile7", x: 268, y: 540 },
+                { asset: "SciFiBGTile7", x: 332, y: 540 },
+                { asset: "SciFiBGTile7", x: 396, y: 540 },
+                { asset: "SciFiBGTile7", x: 460, y: 540 },
+                { asset: "SciFiBGTile7", x: 524, y: 540 },
+                { asset: "SciFiBGTile7", x: 588, y: 540 },
+                { asset: "SciFiBGTile7", x: 652, y: 540 },
+                { asset: "SciFiBGTile7", x: 716, y: 540 },
+                { asset: "SciFiBGTile7", x: 780, y: 540 },
+                // Ceiling
+                { asset: "SciFiBGTile1", x: 12, y: 38 },
+                { asset: "SciFiBGTile1", x: 76, y: 38 },
+                { asset: "SciFiBGTile2", x: 140, y: 38 },
+                { asset: "SciFiBGTile1", x: 204, y: 38 },
+                { asset: "SciFiBGTile1", x: 268, y: 38 },
+                { asset: "SciFiBGTile2", x: 332, y: 38 },
+                { asset: "SciFiBGTile1", x: 396, y: 38 },
+                { asset: "SciFiBGTile1", x: 460, y: 38 },
+                { asset: "SciFiBGTile2", x: 524, y: 38 },
+                { asset: "SciFiBGTile1", x: 588, y: 38 },
+                { asset: "SciFiBGTile1", x: 652, y: 38 },
+                { asset: "SciFiBGTile2", x: 716, y: 38 },
+                { asset: "SciFiBGTile1", x: 780, y: 38 },
+                // Door fence
+                { asset: "SciFiFence6", x: 367, y: 51 },
+                { asset: "SciFiFence4", x: 311, y: 51 },
+                { asset: "SciFiFence4", x: 311, y: 115 },
+                { asset: "SciFiFence3", x: 311, y: 179 },
+                { asset: "SciFiFence5", x: 425, y: 51 },
+                { asset: "SciFiFence5", x: 425, y: 115 },
+                { asset: "SciFiFence1", x: 425, y: 179 },
+                // Door
+                { asset: "SciFiDoor", x: 365, y: 91 },
+                // Door platform 
+                { asset: "SciFiTile15", x: 367, y: 200 },
+                // Player platform
+                { asset: "SciFiTile13", x: 13, y: 431 },
+                { asset: "SciFiTile13", x: 75, y: 431 },
+                { asset: "SciFiTile14", x: 88, y: 431 },
+                { asset: "SciFiTile5", x: 13, y: 462 },
+                { asset: "SciFiTile5", x: 13, y: 524 },
+                // Enemy platform
+                { asset: "SciFiTile12", x: 647, y: 431 },
+                { asset: "SciFiTile13", x: 710, y: 431 },
+                { asset: "SciFiTile13", x: 725, y: 431 },
+                { asset: "SciFiTile5", x: 725, y: 462 },
+                { asset: "SciFiTile5", x: 725, y: 524 },
+                // Player top barrier
+                { asset: "SciFiTile2", x: 144, y: 51 },
+                { asset: "SciFiTile2", x: 144, y: 115 },
+                { asset: "SciFiTile1", x: 144, y: 179 },
             ]
         };
         return LevelElements;
