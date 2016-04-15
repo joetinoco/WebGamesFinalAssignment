@@ -154,6 +154,7 @@ module scenes {
         private _nextLevel(): void {
             scoreboard.stopCountdown();
             scoreboard.score += scoreboard.countdown;
+            scoreboard.highScore = scoreboard.score > scoreboard.highScore? scoreboard.score : scoreboard.highScore;
             if(scene==config.Scene.LEVEL_3){
                 scoreboard.win = true;
                 scene = config.Scene.GAME_OVER;

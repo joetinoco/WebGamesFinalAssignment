@@ -26,7 +26,9 @@ var scenes;
             // add play again button
             this._btnPlayAgain = new objects.Button("PlayAgainButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150, true);
             this.addChild(this._btnPlayAgain);
-            console.log("Win? " + scoreboard.lives);
+            //if(!scoreboard.win){
+            this._scoreLabel = new objects.Label("Score: ", "20px Consolas", "#F4FD46", 0, 0);
+            //}
             // Setup "Background" for fade effect
             this._setupBackground("WhiteBackground");
             // FadeIn

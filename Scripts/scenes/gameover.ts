@@ -7,7 +7,9 @@ module scenes {
         private _btnPlayAgain: objects.Button;
         private _btnSelectionOverlap: createjs.Bitmap;
         private _instructionsMusic: objects.Sound;
-
+        private _scoreLabel: objects.Label;
+        private _highscoreLabel: objects.Label;
+        
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
@@ -37,8 +39,18 @@ module scenes {
             );
             this.addChild(this._btnPlayAgain);
             
-            console.log("Win? " + scoreboard.lives);
-
+            if(scoreboard.win){
+                this._scoreLabel = new objects.Label( 
+                    "SCORE: " + scoreboard.score, "35px Consolas",
+                    "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y - 20);
+                this.addChild(this._scoreLabel);
+                
+                this._highscoreLabel = new objects.Label( 
+                    "HIGHSCORE: " + scoreboard.highScore, "35px Consolas",
+                    "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y + 30);
+                this.addChild(this._highscoreLabel);
+            }
+            
 
             // Setup "Background" for fade effect
             this._setupBackground("WhiteBackground");
