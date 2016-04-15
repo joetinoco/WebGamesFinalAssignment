@@ -39,17 +39,15 @@ module scenes {
             );
             this.addChild(this._btnPlayAgain);
             
-            if(scoreboard.win){
-                this._scoreLabel = new objects.Label( 
-                    "SCORE: " + scoreboard.score, "35px Consolas",
-                    "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y - 20);
-                this.addChild(this._scoreLabel);
-                
-                this._highscoreLabel = new objects.Label( 
-                    "HIGHSCORE: " + scoreboard.highScore, "35px Consolas",
-                    "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y + 30);
-                this.addChild(this._highscoreLabel);
-            }
+            this._scoreLabel = new objects.Label( 
+                "SCORE: " + scoreboard.score, "35px Consolas",
+                "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y - 45);
+            this.addChild(this._scoreLabel);
+            
+            this._highscoreLabel = new objects.Label( 
+                "HIGHSCORE: " + scoreboard.highScore, "35px Consolas",
+                "#F4FD46", config.Screen.CENTER_X, config.Screen.CENTER_Y + 30);
+            this.addChild(this._highscoreLabel);
             
 
             // Setup "Background" for fade effect

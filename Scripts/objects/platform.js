@@ -43,8 +43,7 @@ var objects;
                 .drawRect(position.x * config.Screen.SCALE, position.y * config.Screen.SCALE, this.width * 2 * config.Screen.SCALE, this.height * 2 * config.Screen.SCALE);
         };
         return Platform;
-    }());
+    })();
     objects.Platform = Platform;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=platform.js.map

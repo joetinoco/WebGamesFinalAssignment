@@ -108,6 +108,7 @@ var scenes;
         Level.prototype._nextLevel = function () {
             scoreboard.stopCountdown();
             scoreboard.score += scoreboard.countdown;
+            scoreboard.highScore = scoreboard.score > scoreboard.highScore ? scoreboard.score : scoreboard.highScore;
             if (scene == config.Scene.LEVEL_3) {
                 scoreboard.win = true;
                 scene = config.Scene.GAME_OVER;
@@ -143,8 +144,7 @@ var scenes;
             }
         };
         return Level;
-    }(objects.Scene));
+    })(objects.Scene);
     scenes.Level = Level;
 })(scenes || (scenes = {}));
-
 //# sourceMappingURL=level.js.map
