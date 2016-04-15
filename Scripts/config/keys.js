@@ -11,4 +11,5 @@ var keys;
     keys.W = 87;
     keys.GRAVE = 192;
 })(keys || (keys = {}));
+
 //# sourceMappingURL=keys.js.map

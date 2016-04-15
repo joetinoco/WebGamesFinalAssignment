@@ -82,6 +82,9 @@ var scenes;
         };
         Level.prototype.destroy = function () {
             this._levelMusic.stop();
+            // Reset the keyboard handlers and empty buffers
+            window.onkeydown = function (e) { };
+            window.onkeyup = function (e) { };
         };
         Level.prototype._checkGameStatus = function () {
             if (this._playerLost) {
@@ -140,7 +143,8 @@ var scenes;
             }
         };
         return Level;
-    })(objects.Scene);
+    }(objects.Scene));
     scenes.Level = Level;
 })(scenes || (scenes = {}));
+
 //# sourceMappingURL=level.js.map

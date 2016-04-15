@@ -30,7 +30,8 @@ var objects;
             }
         };
         return Sound;
-    })();
+    }());
     objects.Sound = Sound;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=sound.js.map

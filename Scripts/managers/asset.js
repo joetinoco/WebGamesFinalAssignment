@@ -301,7 +301,8 @@ var managers;
             this.bitMapFont = new createjs.SpriteSheet(bitMapFontData);
         };
         return Assets;
-    })();
+    }());
     managers.Assets = Assets;
 })(managers || (managers = {}));
+
 //# sourceMappingURL=asset.js.map

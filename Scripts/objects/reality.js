@@ -44,7 +44,8 @@ var objects;
             world.ClearForces();
         };
         return Reality;
-    })();
+    }());
     objects.Reality = Reality;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=reality.js.map

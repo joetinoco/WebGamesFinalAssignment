@@ -17,7 +17,8 @@ var objects;
             this.y = y;
         }
         return Label;
-    })(createjs.Text);
+    }(createjs.Text));
     objects.Label = Label;
 })(objects || (objects = {}));
+
 //# sourceMappingURL=label.js.map

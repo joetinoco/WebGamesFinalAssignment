@@ -125,6 +125,9 @@ module scenes {
         
         public destroy(): void {
             this._levelMusic.stop();
+            // Reset the keyboard handlers and empty buffers
+            window.onkeydown = function(e){};
+            window.onkeyup = function(e){};
         }
         
         private _checkGameStatus(): void { 
