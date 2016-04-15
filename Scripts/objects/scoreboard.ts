@@ -89,6 +89,7 @@
         
         public stopCountdown(): void {
             clearInterval(this._countdownInterval);
+            this._countdownInterval = null;
         }
         
         public reset(): void {

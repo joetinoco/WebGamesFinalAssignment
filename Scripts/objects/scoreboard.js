@@ -47,6 +47,7 @@ var objects;
         };
         Scoreboard.prototype.stopCountdown = function () {
             clearInterval(this._countdownInterval);
+            this._countdownInterval = null;
         };
         Scoreboard.prototype.reset = function () {
             this.highScore = this.score > this.highScore ? this.score : this.highScore;

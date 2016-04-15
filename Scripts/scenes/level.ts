@@ -152,7 +152,7 @@ module scenes {
             scoreboard.stopCountdown();
             scoreboard.score += scoreboard.countdown;
             if(scene==config.Scene.LEVEL_3){
-                scoreboard.win = false;
+                scoreboard.win = true;
                 scene = config.Scene.GAME_OVER;
             } else {
                 scene++;
