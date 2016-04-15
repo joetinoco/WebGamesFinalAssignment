@@ -151,8 +151,13 @@ module scenes {
         private _nextLevel(): void {
             scoreboard.stopCountdown();
             scoreboard.score += scoreboard.countdown;
+            if(scene==config.Scene.LEVEL_3){
+                scoreboard.win = false;
+                scene = config.Scene.GAME_OVER;
+            } else {
+                scene++;
+            }
             
-            scene += 1;
             changeScene();
         }
 

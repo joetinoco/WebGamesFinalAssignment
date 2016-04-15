@@ -231,8 +231,7 @@ var objects;
             }
         };
         return Hero;
-    }());
+    })();
     objects.Hero = Hero;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=hero.js.map

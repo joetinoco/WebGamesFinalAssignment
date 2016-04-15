@@ -5,6 +5,7 @@
         public score: number;
         public highScore: number;
         public countdown: number;
+        public win: boolean;
         
         private _background: createjs.Shape;
         
@@ -22,6 +23,7 @@
             this.lives = config.Game.HERO_LIVES;
             this.score = 0;
             this.countdown = config.Game.LEVEL_COUNTDOWN;
+            this.win = false;
             
             this._background = new createjs.Shape();
             this._background.graphics.beginFill("#352D2B").drawRect(0, 0, config.Screen.WIDTH, 40);
@@ -87,6 +89,13 @@
         
         public stopCountdown(): void {
             clearInterval(this._countdownInterval);
+        }
+        
+        public reset(): void {
+            this.highScore = this.score > this.highScore? this.score : this.highScore;
+            this.lives = config.Game.HERO_LIVES;
+            this.score = 0;
+            this.countdown = config.Game.LEVEL_COUNTDOWN;
         }
         
         private _updateInterval(self): void {

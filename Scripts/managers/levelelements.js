@@ -279,8 +279,7 @@ var managers;
             ]
         };
         return LevelElements;
-    }());
+    })();
     managers.LevelElements = LevelElements;
 })(managers || (managers = {}));
-
 //# sourceMappingURL=levelelements.js.map

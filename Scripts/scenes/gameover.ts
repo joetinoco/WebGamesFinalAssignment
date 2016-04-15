@@ -3,41 +3,51 @@ module scenes {
     export class GameOver extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
         private _backgroundImage: createjs.Bitmap;
-        private _startOverButton:objects.Button;
-        private _gameOverLabel:objects.Label;
-        
+        private _messageImage: createjs.Bitmap;
+        private _btnPlayAgain: objects.Button;
+        private _btnSelectionOverlap: createjs.Bitmap;
+        private _instructionsMusic: objects.Sound;
+
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
             super();
+            this.start();
         }
-        
+
         // PUBLIC METHODS +++++++++++++++++++++
-        
+
         // Start Method
-        public start(): void {   
-            
+        public start(): void {
+
             // add background image to the scene
-            this._backgroundImage = new createjs.Bitmap(assets.getResult("GameOverBackground"));
-            this.addChild(this._backgroundImage);  
+            this._backgroundImage = new createjs.Bitmap(managers.Assets.loader.getResult(scoreboard.win?"PlainBackground":"PlainBackgroundGray"));
+            this.addChild(this._backgroundImage);
             
-            // add the WELCOME Label to the MENU scene
-            this._gameOverLabel = new objects.Label(
-                "GAME OVER", 
-                "60px Consolas", 
-                "#FFFFFF", 
-                config.Screen.CENTER_X, 
-                config.Screen.CENTER_Y - 50);
-            this.addChild(this._gameOverLabel);      
-                   
-            // add the START button to the MENU scene
-            this._startOverButton = new objects.Button(
-                "StartOverButton",
+            this._messageImage = new createjs.Bitmap(managers.Assets.loader.getResult(scoreboard.win?"WinMessage":"GameOverMessage"));
+            this._messageImage.x = config.Screen.CENTER_X - this._messageImage.getBounds().width/2;
+            this._messageImage.y = 100;
+            this.addChild(this._messageImage);
+
+            // add play again button
+            this._btnPlayAgain = new objects.Button(
+                "PlayAgainButton",
                 config.Screen.CENTER_X,
-                config.Screen.CENTER_Y + 50, true);
-            this.addChild(this._startOverButton);
+                config.Screen.CENTER_Y + 150,
+                true
+            );
+            this.addChild(this._btnPlayAgain);
             
-            // START Button event listener
-            this._startOverButton.on("click", this._startOverButtonClick, this);
+            console.log("Win? " + scoreboard.lives);
+
+
+            // Setup "Background" for fade effect
+            this._setupBackground("WhiteBackground");
+
+            // FadeIn
+            this._fadeIn(500);
+
+            // Bind start key action
+            window.onkeyup = this._startKeypress;
             
             // add this scene to the global stage container
             stage.addChild(this);
@@ -48,15 +58,30 @@ module scenes {
 
         }
         
-        
+       
         //EVENT HANDLERS ++++++++++++++++++++
-        
-        // START Button click event handler
-        private _startOverButtonClick(event: createjs.MouseEvent) {
-            // Switch to the LEFT_CAVE Scene
-            scene = config.Scene.MENU;
-            changeScene();
+
+
+        // any key press
+        private _startKeypress(e) {
+
+            switch (e.which) {
+                case keys.ENTER:
+                case keys.SPACEBAR:
+                    //FadeOut 
+                    currentScene._fadeOut(500, () => {
+                        // Switch to the LEVEL 1 Scene
+                        scoreboard.reset();
+                        scene = config.Scene.MENU;
+                        changeScene();
+                    });
+                    break;
+
+                default:
+                    currentScene.dispatchEvent("selectButton");
+                    break;
+            }
         }
-        
+
     }
 }

@@ -56,8 +56,7 @@ var objects;
             this.view.rotation = this.body.GetAngle() * (180 / Math.PI);
         };
         return Coin;
-    }());
+    })();
     objects.Coin = Coin;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=coin.js.map

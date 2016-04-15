@@ -6,6 +6,7 @@ var objects;
             this.lives = config.Game.HERO_LIVES;
             this.score = 0;
             this.countdown = config.Game.LEVEL_COUNTDOWN;
+            this.win = false;
             this._background = new createjs.Shape();
             this._background.graphics.beginFill("#352D2B").drawRect(0, 0, config.Screen.WIDTH, 40);
             this._livesLabel = new objects.Label("LIFES:", "20px Consolas", "#FFF", 100, 20);
@@ -47,12 +48,17 @@ var objects;
         Scoreboard.prototype.stopCountdown = function () {
             clearInterval(this._countdownInterval);
         };
+        Scoreboard.prototype.reset = function () {
+            this.highScore = this.score > this.highScore ? this.score : this.highScore;
+            this.lives = config.Game.HERO_LIVES;
+            this.score = 0;
+            this.countdown = config.Game.LEVEL_COUNTDOWN;
+        };
         Scoreboard.prototype._updateInterval = function (self) {
             self.countdown--;
         };
         return Scoreboard;
-    }());
+    })();
     objects.Scoreboard = Scoreboard;
 })(objects || (objects = {}));
-
 //# sourceMappingURL=scoreboard.js.map

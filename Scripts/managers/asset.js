@@ -8,10 +8,15 @@ var managers;
         { id: "StartButton", src: "Assets/images/BtnStart.png" },
         { id: "InstructionsButton", src: "Assets/images/BtnInstructions.png" },
         { id: "BackButton", src: "Assets/images/BtnBack.png" },
+        { id: "PlayAgainButton", src: "Assets/images/BtnPlayAgain.png" },
         { id: "MenuBackground", src: "Assets/images/MenuBackground.png" },
         { id: "InstructionsBackground", src: "Assets/images/InstructionsBackground.png" },
         { id: "WhiteBackground", src: "Assets/images/WhiteBackground.png" },
         { id: "BlackBackground", src: "Assets/images/BlackBackground.png" },
+        { id: "PlainBackground", src: "Assets/images/plainBackground.png" },
+        { id: "PlainBackgroundGray", src: "Assets/images/plainBackgroundGray.png" },
+        { id: "GameOverMessage", src: "Assets/images/MessageGameOver.png" },
+        { id: "WinMessage", src: "Assets/images/MessageYouWin.png" },
         // Florest tiles
         { id: "FlorestBackground", src: "Assets/images/florest/BG.png" },
         { id: "FlorestBush2", src: "Assets/images/florest/Bush_2.png" },
@@ -296,8 +301,7 @@ var managers;
             this.bitMapFont = new createjs.SpriteSheet(bitMapFontData);
         };
         return Assets;
-    }());
+    })();
     managers.Assets = Assets;
 })(managers || (managers = {}));
-
 //# sourceMappingURL=asset.js.map
