@@ -49,7 +49,7 @@ var scenes;
                     currentScene._fadeOut(500, function () {
                         // Switch to the LEVEL 1 Scene
                         scoreboard.reset();
-                        scene = config.Scene.MENU;
+                        scene = config.Scene.LEVEL_1;
                         changeScene();
                     });
                     break;
