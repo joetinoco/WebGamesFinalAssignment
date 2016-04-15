@@ -207,6 +207,7 @@
                 this.body.SetLinearVelocity(new box2d.b2Vec2(0, 0));
                 this.body.SetAngularVelocity(0);
                 this.body.SetPosition(new box2d.b2Vec2(this.initialX / config.Screen.SCALE, this.initialY / config.Screen.SCALE));
+                this.view.gotoAndPlay("heroIdle");
             } else {
                 // Normal movement:
                 // Move our view (Our EaselJS Bitmap)
