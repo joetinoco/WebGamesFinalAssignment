@@ -54,6 +54,7 @@ var objects;
             this.lives = config.Game.HERO_LIVES;
             this.score = 0;
             this.countdown = config.Game.LEVEL_COUNTDOWN;
+            this.win = false;
         };
         Scoreboard.prototype._updateInterval = function (self) {
             self.countdown--;
