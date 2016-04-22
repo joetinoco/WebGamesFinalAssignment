@@ -30,7 +30,7 @@
             this._background.graphics.beginFill("#352D2B").drawRect(0, 0, config.Screen.WIDTH, 40);
 
             this._livesLabel = new objects.Label( 
-                "LIFES:", "20px Consolas",
+                "LIVES:", "20px Consolas",
                 "#FFF", 100, 20);
             
             this._livesValueLabel = new objects.Label( 

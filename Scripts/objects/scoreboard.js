@@ -10,7 +10,7 @@ var objects;
             this.highScore = 0;
             this._background = new createjs.Shape();
             this._background.graphics.beginFill("#352D2B").drawRect(0, 0, config.Screen.WIDTH, 40);
-            this._livesLabel = new objects.Label("LIFES:", "20px Consolas", "#FFF", 100, 20);
+            this._livesLabel = new objects.Label("LIVES:", "20px Consolas", "#FFF", 100, 20);
             this._livesValueLabel = new objects.Label(" ", "20px Consolas", "#FFF", 140, 20);
             this._scoreLabel = new objects.Label("SCORE:", "20px Consolas", "#FFF", 380, 20);
             this._scoreValueLabel = new objects.Label(" ", "20px Consolas", "#FFF", 440, 20);

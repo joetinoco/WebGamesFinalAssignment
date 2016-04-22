@@ -77,6 +77,8 @@ var managers;
                 { asset: "FlorestTile2", x: 640, y: 580 },
                 { asset: "FlorestTile2", x: 704, y: 580 },
                 { asset: "FlorestTile2", x: 768, y: 580 },
+                // Door
+                { asset: "FlorestDoor", x: 424, y: 485 },
                 // cosmetic elements
                 { asset: "FlorestSign2", x: 0, y: 540 },
                 { asset: "FlorestBush4", x: 64, y: 555 },
@@ -169,8 +171,10 @@ var managers;
                 { asset: "WinterTile1", x: 380, y: 114 },
                 { asset: "WinterTile3", x: 416, y: 114 },
                 { asset: "WinterTile13", x: 416, y: 168 },
-                { asset: "WinterCrate", x: 385, y: 30 },
-                { asset: "WinterCrate", x: 380, y: 75 },
+                { asset: "WinterIceBox", x: 385, y: 30 },
+                { asset: "WinterIceBox", x: 380, y: 75 },
+                // Door
+                { asset: "WinterDoor", x: 735, y: 485 },
                 // cosmetic elements
                 { asset: "WinterSign2", x: 0, y: 540 },
                 { asset: "WinterTree1", x: 12, y: 100 },

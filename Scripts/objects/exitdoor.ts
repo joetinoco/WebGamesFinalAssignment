@@ -56,7 +56,7 @@ module objects {
             // TODO: It appears this polygon overlaps everything in the stage
             // so I set the alpha to 0.3 to make the exit sign visible
             var door = new createjs.Shape();
-            door.graphics.beginFill("rgba(0,255,0,0.3)")
+            door.graphics.beginFill("rgba(0,255,0,0.1)")
                 .drawRect(
                 position.x * config.Screen.SCALE,
                 position.y * config.Screen.SCALE,

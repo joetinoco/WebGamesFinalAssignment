@@ -38,12 +38,14 @@ var managers;
         { id: "FlorestTile13", src: "Assets/images/florest/tiles/13.png" },
         { id: "FlorestTile14", src: "Assets/images/florest/tiles/14.png" },
         { id: "FlorestTile15", src: "Assets/images/florest/tiles/15.png" },
+        { id: "FlorestDoor", src: "Assets/images/florest/Door.png" },
         // Winter tiles
         { id: "WinterBackground", src: "Assets/images/winter/BG.png" },
         { id: "WinterCrate", src: "Assets/images/winter/Crate.png" },
         { id: "WinterStone", src: "Assets/images/winter/Stone.png" },
         { id: "WinterSign2", src: "Assets/images/winter/Sign_2.png" },
         { id: "WinterTree1", src: "Assets/images/winter/Tree_1.png" },
+        { id: "WinterIceBox", src: "Assets/images/winter/IceBox.png" },
         { id: "WinterTile1", src: "Assets/images/winter/Tiles/1.png" },
         { id: "WinterTile2", src: "Assets/images/winter/Tiles/2.png" },
         { id: "WinterTile3", src: "Assets/images/winter/Tiles/3.png" },
@@ -54,6 +56,7 @@ var managers;
         { id: "WinterTile14", src: "Assets/images/winter/Tiles/14.png" },
         { id: "WinterTile15", src: "Assets/images/winter/Tiles/15.png" },
         { id: "WinterTile16", src: "Assets/images/winter/Tiles/16.png" },
+        { id: "WinterDoor", src: "Assets/images/winter/Door.png" },
         // Sci-fi tiles
         { id: "SciFiBackground", src: "Assets/images/scifi/BG.png" },
         { id: "SciFiTile1", src: "Assets/images/scifi/Tiles/1.png" },
