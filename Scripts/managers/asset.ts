@@ -46,7 +46,10 @@
         { id: "WinterStone", src: "Assets/images/winter/Stone.png" },
         { id: "WinterSign2", src: "Assets/images/winter/Sign_2.png" },
         { id: "WinterTree1", src: "Assets/images/winter/Tree_1.png" },
+        { id: "WinterTree2", src: "Assets/images/winter/Tree_2.png" },
         { id: "WinterIceBox", src: "Assets/images/winter/IceBox.png" },
+        { id: "WinterSnowMan", src: "Assets/images/winter/SnowMan.png" },
+        { id: "WinterCrystal", src: "Assets/images/winter/Crystal.png" },
         { id: "WinterTile1", src: "Assets/images/winter/Tiles/1.png" },
         { id: "WinterTile2", src: "Assets/images/winter/Tiles/2.png" },
         { id: "WinterTile3", src: "Assets/images/winter/Tiles/3.png" },
@@ -57,6 +60,11 @@
         { id: "WinterTile14", src: "Assets/images/winter/Tiles/14.png" },
         { id: "WinterTile15", src: "Assets/images/winter/Tiles/15.png" },
         { id: "WinterTile16", src: "Assets/images/winter/Tiles/16.png" },
+        { id: "WinterTile19", src: "Assets/images/winter/Tiles/19.png" },
+        { id: "WinterTile20", src: "Assets/images/winter/Tiles/20.png" },
+        { id: "WinterTile21", src: "Assets/images/winter/Tiles/21.png" },
+        { id: "WinterTile22", src: "Assets/images/winter/Tiles/22.png" },
+        { id: "WinterTile23", src: "Assets/images/winter/Tiles/23.png" },
         { id: "WinterDoor", src: "Assets/images/winter/Door.png" },
         
         // Sci-fi tiles

@@ -166,11 +166,11 @@ var managers;
                 { asset: "WinterTile15", x: 88, y: 214 },
                 { asset: "WinterTile16", x: 150, y: 214 },
                 { asset: "WinterTile14", x: 724, y: 114 },
-                { asset: "WinterTile14", x: 574, y: 114 },
-                { asset: "WinterTile16", x: 588, y: 114 },
-                { asset: "WinterTile1", x: 380, y: 114 },
-                { asset: "WinterTile3", x: 416, y: 114 },
-                { asset: "WinterTile13", x: 416, y: 168 },
+                { asset: "WinterTile19", x: 574, y: 114 },
+                { asset: "WinterTile20", x: 612, y: 114 },
+                { asset: "WinterTile23", x: 380, y: 114 },
+                { asset: "WinterTile22", x: 416, y: 114 },
+                { asset: "WinterTile21", x: 416, y: 168 },
                 { asset: "WinterIceBox", x: 385, y: 30 },
                 { asset: "WinterIceBox", x: 380, y: 75 },
                 // Door
@@ -178,8 +178,14 @@ var managers;
                 // cosmetic elements
                 { asset: "WinterSign2", x: 0, y: 540 },
                 { asset: "WinterTree1", x: 12, y: 100 },
+                { asset: "WinterTree2", x: 600, y: 435 },
+                { asset: "WinterSnowMan", x: 100, y: 390 },
+                { asset: "WinterCrystal", x: 585, y: 75 },
+                { asset: "WinterCrystal", x: 485, y: 285 },
                 { asset: "WinterStone", x: 320, y: 285 },
+                { asset: "WinterStone", x: 350, y: 285 },
                 { asset: "WinterStone", x: 660, y: 540 },
+                { asset: "WinterStone", x: 230, y: 540 },
             ]
         };
         LevelElements.Level_3 = {
